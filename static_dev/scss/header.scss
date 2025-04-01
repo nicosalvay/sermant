@@ -1,0 +1,65 @@
+/* SCSS Document */
+h1,h2,h3,h4,h5,h6 {color: $color_azul_web;}
+h5{color: white;}
+b {color: $color_azul_web; /* Color del texto en negrita */}
+p {font-size: 1.1em !important;}
+.bg-primary{background-color:$color_azul_web !important;}
+.textwhite{color:#fff;} 
+body {background-color: $color_azul_web;margin: 0;}
+.sticky-top-con-espacio {
+    position: sticky; /* sticky para mantener el elemento en la parte superior */
+    top: 80px; /* Deja un margen superior */
+    z-index: 1020; /* Asegura que esté por encima de otros elementos */
+}
+.sermant-title {
+    font-size: 5em !important;
+    font-weight: bold !important;
+    background-color: rgba(31, 50, 80, 0.5); /* Fondo azul con 50% de transparencia */
+    padding: 0.1em; /* Opcional: añade un poco de espacio alrededor del texto */
+    border-radius: 0.1em; /* Opcional: añade bordes redondeados */
+}
+
+.ascensores-subtitle {
+    font-size: 1.5em;
+}
+
+/* Estilos para pantallas xs (extra pequeñas) */
+@media (max-width: 575.98px) { /* Bootstrap xs breakpoint */
+    .sermant-title {
+        font-size: 2em !important; /* Ajusta el tamaño para xs */
+    }
+
+    .ascensores-subtitle {
+        font-size: 1em !important; /* Ajusta el tamaño para xs */
+    }
+}
+
+.quienes-somos-container {
+    background-color: white; /* Color de fondo similar a la imagen */
+    padding: 1em; /* Añade un padding general para evitar que el texto toque los bordes */
+}
+
+.quienes-somos-titulo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.quienes-somos-texto {
+    text-align: justify;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+.quienes-somos-titulo2{position: relative;bottom: 0%;}
+#carousel-trabajos-container{background-color: white;}
+#logos-div-principal{background-color: white;
+}
+#logosCarousel{
+    border: .3em solid rgba(0, 0, 0, 1);
+    border-radius: 0.5em;}
+#logosCarousel .carousel-item img {
+    height: 20vh; /* Establece la altura de la imagen al 20% de la altura de la ventana */
+    object-fit: contain; /* O 'cover' según prefieras */
+  }
+
+#contenedor-contactanos{background-color: white;}
+#Piedepagina{background-color: $color_azul_web;}
