@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<!--NAV Menú Principal-->
+<div class="container p-0 sticky-top">
+    <nav class="navbar navbar-expand-lg bg-primary py-4">
+        <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">SER-MANT</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!--Menú alineado a la izquierda-->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active textwhite" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link textwhite" href="#quienes-somos">Quienes somos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link textwhite" href="#contactanos">Contáctanos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link textwhite" href="#">Productos</a>
+            </li>
+            </ul>
+            <!--Menú alineado a la derecha-->
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">Creá tu cuenta</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">Ingresá</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">Mis compras</a>
+                </li>
+                <li class="nav-item d-flex align-items-center">
+                    <a href="#" class="nav-link text-white">
+                        <i class="bi bi-cart"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+</div>
+
+<script>
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.forEach(item => item.classList.remove('active')); // Quita "active" de todos
+            link.classList.add('active'); // Agrega "active" al enlace clicado
+        });
+    });
+</script>
+
+{% block contenedor %}
+{% endblock %}
+
+<footer id="Piedepagina" class="py-1">
+    <div class="container text-white">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <i class="bi bi-telephone-fill fs-3 mb-2"></i>
+                <h5>Teléfonos de contacto:</h5>
+                <p class="mb-0">(0351) 155-111699</p>
+                <p>(0351) 155-302900</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <i class="bi bi-envelope-fill fs-3 mb-2"></i>
+                <h5>Correo electrónico:</h5>
+                <p class="mb-0">sermant_ascensores@hotmail.com</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="https://wa.me/3512421366" class="text-white"><i class="bi bi-whatsapp fs-3 mb-2"></i></a>
+                
+                <h5>Escribinos por:</h5>
+                <a href="https://wa.me/3512421366" class="text-white">WhatsApp</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% endblock %}

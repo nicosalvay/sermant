@@ -1,0 +1,166 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block contenedor %}
+<!--Home - Bienvenida-->
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-7 d-flex align-items-center justify-content-center p-0 position-relative">
+            <img src="{% static 'img/Ascensor frente.jpg' %}" alt="Logo SER-MANT" class="img-fluid w-100 h-100" id="logo-sermant" style="object-fit: cover;">
+            <div class="position-absolute text-center text-white">
+                <span class="sermant-title">SER-MANT</span> <br>
+                <span class="ascensores-subtitle">ASCENSORES</span>
+            </div>
+        </div>
+        <div class="col-12 col-lg-5 d-flex align-items-stretch p-0 d-none d-lg-block">
+            <img src="{% static 'img/Edificio.jpg' %}" alt="Edificio" class="img-fluid w-100 h-100" id="edificio-home" style="object-fit: cover;">
+        </div>
+    </div>
+</div>
+<div id="quienes-somos"class="p-5">   
+    <br>
+</div>
+<!--Quienes Somos-->
+<div id="contenedor-quienes-somos"class="container">
+    <div class="row">
+        <!--Quienes Somos - Presentación-->
+        <div class="col-12 col-lg-6 d-flex p-0 position-relative quienes-somos-container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="quienes-somos-titulo">¿Quiénes somos?</h1>
+                    <p class="quienes-somos-texto">
+                    Con más de 20 años de experiencia, <b>SER-MANT</b> se ha consolidado como una referencia en Córdoba Capital en la instalación, mantenimiento, reparación y modernización de ascensores, montacargas y equipos afines. Nuestro compromiso con la calidad y la seguridad nos ha permitido construir una reputación sólida y de confianza entre nuestros clientes.
+                    </p>
+                    <p class="quienes-somos-texto">
+                    En <b>SER-MANT</b>, nos enorgullece estar a la vanguardia de la tecnología y el diseño, garantizando la máxima eficiencia y seguridad en cada uno de nuestros productos y servicios. Nuestro objetivo es mejorar la calidad de vida de nuestros clientes a través de soluciones de transporte vertical que cumplan con los más altos estándares de la industria.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--Quienes Somos - Carrouselle-->
+        <div id="carousel-trabajos-container"class="col-12 col-lg-6 d-flex align-items-center p-0 ">
+            <div id="carousel-trabajos" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                <h3 class="text-center">Nuestros trabajos</h3>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                    <img src="{% static 'img/Ascensor 1.png' %}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="{% static 'img/ascensor2.jpg' %}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                    <img src="{% static 'img/ascensor3.jpg' %}" class="d-block w-100" alt="...">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-trabajos" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carousel-trabajos" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                </div>
+        </div>
+    </div>
+</div>
+
+<!--Logos - Carrouselle-->
+
+<div id="logos-div-principal" class="container">
+    <div class="row">
+        <div class="col-12 p-1">
+            <h3>Empresas que confiaron en nosotros</h3>
+            <div id="logosCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel p-0" >
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row justify-content-center">
+                            <div class="col-md-2">
+                                <img src="{% static 'img/Logo1.jpg' %}" class="d-block w-100" alt="Logo 1">
+                            </div>
+                            <div class="col-md-1">
+                                <img src="{% static 'img/Logo2.png' %}" class="d-block w-100" alt="Logo 2">
+                            </div>
+                            <div class="col-md-2">
+                                <img src="{% static 'img/Logo3.png' %}" class="d-block w-100" alt="Logo 3">
+                            </div>
+                            <div class="col-md-2">
+                                <img src="{% static 'img/Logo4.png' %}" class="d-block w-100" alt="Logo 4">
+                            </div>
+                            <div class="col-md-2">
+                                <img src="{% static 'img/Logo5.png' %}" class="d-block w-100" alt="Logo 5">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row justify-content-center">
+                            <div class="col-md-2">
+                                <img src="{% static 'img/Logo6.png' %}" class="d-block w-100" alt="Logo 6">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#logosCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#logosCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Pantalla contactanos-->
+<div id="contactanos"class="p-5">   
+    <br>
+</div>
+
+<div id="contenedor-contactanos"class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Contáctanos</h1>
+        </div>
+        <div class="col-12 col-lg-5">
+            <div class="mb-3">
+                <label for="InputNombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="InputNombre" placeholder="Escriba aquí su nombre">
+            </div>
+            <div class="mb-3">
+                <label for="InputApellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="InputApellido" placeholder="Escriba aquí su apellido">
+            </div>
+            <div class="mb-3">
+                <label for="InputEmail" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="InputEmail" placeholder="Escriba aquí su E-mail">
+            </div>
+            <div class="mb-3 row g-3 align-items-center">
+                <div class="col-auto">
+                    <label for="InputCodigoArea" class="form-label">Código de área</label>
+                    <input type="tel" class="form-control" id="InputCodigoArea" placeholder="Ej: 351">
+                </div>
+                <div class="col-auto">
+                    <label for="InputNumeroTelefono" class="form-label">Número de teléfono</label>
+                    <input type="tel" class="form-control" id="InputNumeroTelefono" placeholder="Ej: 5987987">
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-7 justify-content-center">
+            <h3>Detalle</h3>
+            <div class="mb-3">
+                <label for="InputDetalle" class="form-label">Por favor ingrese su inquietud</label>
+                <textarea class="form-control" id="InputDetalle" rows="5"></textarea>
+            </div>
+            <button type="button" class="btn btn-primary">Enviar</button>
+        </div>
+        <div class="p-3">   
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
