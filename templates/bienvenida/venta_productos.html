@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block contenedor %}
+<!--Home - Bienvenida-->
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-7 d-flex align-items-center justify-content-center p-0 position-relative">
+            <img src="{% static 'img/Ascensor frente.jpg' %}" alt="Logo SER-MANT" class="img-fluid w-100 h-100" id="logo-sermant" style="object-fit: cover;">
+            <div class="position-absolute text-center text-white">
+                <span class="sermant-title">SER-MANT</span> <br>
+                <span class="ascensores-subtitle">ASCENSORES</span>
+            </div>
+        </div>
+        <div class="col-12 col-lg-5 d-flex align-items-stretch p-0 d-none d-lg-block">
+            <img src="{% static 'img/Edificio.jpg' %}" alt="Edificio" class="img-fluid w-100 h-100" id="edificio-home" style="object-fit: cover;">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

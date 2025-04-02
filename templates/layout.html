@@ -14,16 +14,16 @@
             <!--Menú alineado a la izquierda-->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-                <a class="nav-link active textwhite" aria-current="page" href="#">Home</a>
+                <a class="nav-link active textwhite" aria-current="page" href="{% url 'index' %}#">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link textwhite" href="#quienes-somos">Quienes somos</a>
+                <a class="nav-link textwhite" href="{% url 'index' %}#quienes-somos">Quienes somos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link textwhite" href="#contactanos">Contáctanos</a>
+                <a class="nav-link textwhite" href="{% url 'index' %}#contactanos">Contáctanos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link textwhite" href="#">Productos</a>
+                <a class="nav-link textwhite" href="venta">Productos</a>
             </li>
             </ul>
             <!--Menú alineado a la derecha-->

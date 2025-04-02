@@ -5,4 +5,5 @@ from bienvenida import views
 
 urlpatterns = [
     path('',views.index, name='index'),
+    path('venta',views.venta, name='venta'),
 ]

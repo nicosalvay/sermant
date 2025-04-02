@@ -20,9 +20,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # Cuando los usuarios acceden a la URL /bienvenida, Django incluye y
-    # procesa las rutas definidas en el archivo urls.py del módulo bienvenida.
-    path("bienvenida/",include ('bienvenida.urls')),
+    # Redirige la URL raíz al módulo bienvenida.urls
+    path("", include('bienvenida.urls')),
     path('accounts/', include('registration.backends.default.urls')),
-    path("usuarios/", include ('usuarios.urls')),
+    path("usuarios/", include('usuarios.urls')),
 ]
