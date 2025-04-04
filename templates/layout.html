@@ -23,7 +23,7 @@
                 <a class="nav-link textwhite" href="{% url 'index' %}#contactanos">Contáctanos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link textwhite" href="venta">Productos</a>
+                <a class="nav-link textwhite" href="{% url 'venta' %}">Productos</a>
             </li>
             </ul>
             <!--Menú alineado a la derecha-->
@@ -47,13 +47,32 @@
         </div>
     </nav>
 </div>
-
+<!--Código JavaScript para manejar la clase 'active' en los enlaces de navegación-->
 <script>
     const navLinks = document.querySelectorAll('.nav-link');
+
+    // Función para quitar la clase 'active' de todos los enlaces
+    function removeActiveClass() {
+        navLinks.forEach(link => link.classList.remove('active'));
+    }
+
+    // Función para marcar el enlace correspondiente como activo
+    function setActiveLink() {
+        removeActiveClass(); // Quita 'active' de todos antes de marcar el correcto
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === window.location.pathname) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    // Llama a setActiveLink() al cargar la página
+    setActiveLink();
+
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            navLinks.forEach(item => item.classList.remove('active')); // Quita "active" de todos
-            link.classList.add('active'); // Agrega "active" al enlace clicado
+            removeActiveClass(); // Quita 'active' de todos antes de agregar al clicado
+            link.classList.add('active');
         });
     });
 </script>

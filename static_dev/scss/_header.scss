@@ -2,7 +2,7 @@
 h1,h2,h3,h4,h5,h6 {color: $color_azul_web;}
 h5{color: white;}
 b {color: $color_azul_web; /* Color del texto en negrita */}
-p {font-size: 1.1em !important;}
+p {font-size: 1.1em;}
 .bg-primary{background-color:$color_azul_web !important;}
 .textwhite{color:#fff;} 
 body {background-color: $color_azul_web;margin: 0;}
@@ -14,7 +14,7 @@ body {background-color: $color_azul_web;margin: 0;}
 .sermant-title {
     font-size: 5em !important;
     font-weight: bold !important;
-    background-color: rgba(31, 50, 80, 0.5); /* Fondo azul con 50% de transparencia */
+    background-color: $color_azul_web_trans; /* Fondo azul con 50% de transparencia */
     padding: 0.1em; /* Opcional: añade un poco de espacio alrededor del texto */
     border-radius: 0.1em; /* Opcional: añade bordes redondeados */
 }
@@ -63,3 +63,32 @@ body {background-color: $color_azul_web;margin: 0;}
 
 #contenedor-contactanos{background-color: white;}
 #Piedepagina{background-color: $color_azul_web;}
+
+#productos_container{background-color: white;}
+
+.card-img-container {
+    width: 100%; /* El contenedor ocupa todo el ancho de la card */
+    height: 25vh; /* Establece una altura fija para el contenedor */
+    overflow: hidden; /* Oculta cualquier parte de la imagen que exceda el contenedor */
+}
+
+.card-img-top {
+    width: 100%; /* La imagen ocupa todo el ancho del contenedor */
+    height: 100%; /* La imagen ocupa toda la altura del contenedor */
+    object-fit: contain; /* Ajusta la imagen sin recortar */
+}
+.precios{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: $color_azul_web;
+}
+
+.card-body-ventas {
+    height: 25vh;
+    overflow: auto; /* Agrega barras de desplazamiento si es necesario */
+}
+.descripcion-producto {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
