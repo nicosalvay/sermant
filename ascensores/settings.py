@@ -140,6 +140,6 @@ REGISTRATION_AUTO_LOGIN = True
 en el enlace de activación que aparece en su correo electrónico. El valor predeterminado es Falso."""
 SITE_ID = 1 # SITE_ID = 1, estás diciendo que este es el sitio principal o predeterminado que tu aplicación utilizará.
 
-LOGIN_REDIRECT_URL = "/bienvenida" # Define a qué vista voy luego del logueo.
+LOGIN_REDIRECT_URL = "/" # Define a qué vista voy luego del logueo.
 LOGIN_URL = "django.contrib.auth.views.login" # Define la URL de la vista que maneja el proceso de inicio de sesión.
 

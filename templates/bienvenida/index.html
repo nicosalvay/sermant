@@ -3,6 +3,7 @@
 
 {% block contenedor %}
 <!--Home - Bienvenida-->
+
 <div class="container">
     <div class="row">
         <div class="col-12 col-lg-7 d-flex align-items-center justify-content-center p-0 position-relative">
@@ -12,12 +13,15 @@
                 <span class="ascensores-subtitle">ASCENSORES</span>
             </div>
         </div>
-        <div class="col-12 col-lg-5 d-flex align-items-stretch p-0 d-none d-lg-block">
+        <div class="col-12 col-lg-5 d-flex align-items-stretch p-0 d-none d-lg-block position-relative">
             <img src="{% static 'img/Edificio.jpg' %}" alt="Edificio" class="img-fluid w-100 h-100" id="edificio-home" style="object-fit: cover;">
+            <a href="https://wa.me/3512421366" target="_blank" class="position-absolute inf-izq">
+                <img src="{% static 'img/WhatsApp.webp' %}" alt="WhatsApp" style="width: 50px; height: auto;">
+            </a>
         </div>
     </div>
 </div>
-<div id="quienes-somos"class="p-5">   
+<div id="quienes-somos" class="p-5">
     <br>
 </div>
 <!--Quienes Somos-->

@@ -14985,4 +14985,10 @@ body {
   text-overflow: ellipsis;
 }
 
+/* line 96, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+.inf-izq {
+  bottom: 10px;
+  right: 10px;
+}
+
 /*# sourceMappingURL=main.css.map */
