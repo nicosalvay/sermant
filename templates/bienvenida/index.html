@@ -4,19 +4,20 @@
 {% block contenedor %}
 <!--Home - Bienvenida-->
 
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-lg-7 d-flex align-items-center justify-content-center p-0 position-relative">
-            <img src="{% static 'img/Ascensor frente.jpg' %}" alt="Logo SER-MANT" class="img-fluid w-100 h-100" id="logo-sermant" style="object-fit: cover;">
+
+<div class="container home-container">
+    <div class="row hom-row">
+        <div class="col-12 col-lg-7 d-flex align-items-center justify-content-center p-0 position-relative home-img">
+            <img src="{% static 'img/Ascensor frente.jpg' %}" alt="Logo SER-MANT" class="img-fluid w-100 h-100 home-img" id="logo-sermant">
             <div class="position-absolute text-center text-white">
                 <span class="sermant-title">SER-MANT</span> <br>
                 <span class="ascensores-subtitle">ASCENSORES</span>
             </div>
         </div>
-        <div class="col-12 col-lg-5 d-flex align-items-stretch p-0 d-none d-lg-block position-relative">
-            <img src="{% static 'img/Edificio.jpg' %}" alt="Edificio" class="img-fluid w-100 h-100" id="edificio-home" style="object-fit: cover;">
-            <a href="https://wa.me/3512421366" target="_blank" class="position-absolute inf-izq">
-                <img src="{% static 'img/WhatsApp.webp' %}" alt="WhatsApp" style="width: 50px; height: auto;">
+        <div class="col-12 col-lg-5 d-flex align-items-stretch p-0 d-none d-lg-block position-relative home-img">
+            <img src="{% static 'img/Edificio.jpg' %}" alt="Edificio" class="img-fluid w-100 h-100 home-img" id="edificio-home">
+            <a href="https://wa.me/3512421366" target="_blank" class="position-absolute inf-der">
+                <img src="{% static 'img/WhatsApp.webp' %}" alt="WhatsApp" class="home-whatsapp">
             </a>
         </div>
     </div>
@@ -105,11 +106,11 @@
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#logosCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="bi bi-arrow-left-circle-fill fs-2 text-primary-emphasis" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#logosCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="bi bi-arrow-right-circle-fill fs-2 text-primary-emphasis" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
                 </button>
             </div>
