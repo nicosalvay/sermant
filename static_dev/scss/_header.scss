@@ -1,4 +1,9 @@
 /* SCSS Document */
+
+/**************************************************************************************
+Estilos generales
+***************************************************************************************/
+
 h1,h2,h3,h4,h5,h6 {color: $color_azul_web;}
 h5{color: white;}
 b {color: $color_azul_web; /* Color del texto en negrita */}
@@ -11,6 +16,20 @@ body {background-color: $color_azul_web;margin: 0;}
     top: 80px; /* Deja un margen superior */
     z-index: 1020; /* Asegura que esté por encima de otros elementos */
 }
+#Piedepagina{background-color: $color_azul_web;}
+
+/**************************************************************************************
+HOME
+***************************************************************************************/
+
+.home-container{height: 85vh; overflow: hidden;}
+.hom-row, .home-img {height: 100%;}
+.home-img {object-fit: cover;}
+.home-whatsapp{width: 50px; height: auto}
+.inf-der{
+    bottom: 10px; right: 10px;
+}
+
 .sermant-title {
     font-size: 5em !important;
     font-weight: bold !important;
@@ -33,6 +52,10 @@ body {background-color: $color_azul_web;margin: 0;}
         font-size: 1em !important; /* Ajusta el tamaño para xs */
     }
 }
+
+/**************************************************************************************
+QUIENES SOMOS
+***************************************************************************************/
 
 .quienes-somos-container {
     background-color: white; /* Color de fondo similar a la imagen */
@@ -61,8 +84,16 @@ body {background-color: $color_azul_web;margin: 0;}
     object-fit: contain; /* O 'cover' según prefieras */
   }
 
+/**************************************************************************************
+CONTÁCTANOS
+***************************************************************************************/
+
 #contenedor-contactanos{background-color: white;}
-#Piedepagina{background-color: $color_azul_web;}
+
+
+/**************************************************************************************
+PRODUCTOS
+***************************************************************************************/
 
 #productos_container{background-color: white;}
 
@@ -93,6 +124,3 @@ body {background-color: $color_azul_web;margin: 0;}
     text-overflow: ellipsis;
 }
 
-.inf-izq{
-    bottom: 10px; right: 10px;
-}

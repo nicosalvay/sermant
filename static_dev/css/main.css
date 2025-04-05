@@ -14799,44 +14799,47 @@ fieldset:disabled .btn {
 }
 
 /* SCSS Document */
-/* line 2, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/**************************************************************************************
+Estilos generales
+***************************************************************************************/
+/* line 7, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   color: #1F3250;
 }
 
-/* line 3, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 8, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 h5, .h5 {
   color: white;
 }
 
-/* line 4, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 9, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 b {
   color: #1F3250;
   /* Color del texto en negrita */
 }
 
-/* line 5, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 10, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 p {
   font-size: 1.1em;
 }
 
-/* line 6, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 11, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .bg-primary {
   background-color: #1F3250 !important;
 }
 
-/* line 7, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 12, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .textwhite {
   color: #fff;
 }
 
-/* line 8, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 13, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 body {
   background-color: #1F3250;
   margin: 0;
 }
 
-/* line 9, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 14, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .sticky-top-con-espacio {
   position: sticky;
   /* sticky para mantener el elemento en la parte superior */
@@ -14846,7 +14849,43 @@ body {
   /* Asegura que esté por encima de otros elementos */
 }
 
-/* line 14, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 19, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+#Piedepagina {
+  background-color: #1F3250;
+}
+
+/**************************************************************************************
+HOME
+***************************************************************************************/
+/* line 25, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+.home-container {
+  height: 85vh;
+  overflow: hidden;
+}
+
+/* line 26, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+.hom-row, .home-img {
+  height: 100%;
+}
+
+/* line 27, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+.home-img {
+  object-fit: cover;
+}
+
+/* line 28, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+.home-whatsapp {
+  width: 50px;
+  height: auto;
+}
+
+/* line 29, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+.inf-der {
+  bottom: 10px;
+  right: 10px;
+}
+
+/* line 33, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .sermant-title {
   font-size: 5em !important;
   font-weight: bold !important;
@@ -14858,7 +14897,7 @@ body {
   /* Opcional: añade bordes redondeados */
 }
 
-/* line 22, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 41, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .ascensores-subtitle {
   font-size: 1.5em;
 }
@@ -14866,19 +14905,22 @@ body {
 /* Estilos para pantallas xs (extra pequeñas) */
 @media (max-width: 575.98px) {
   /* Bootstrap xs breakpoint */
-  /* line 28, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+  /* line 47, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
   .sermant-title {
     font-size: 2em !important;
     /* Ajusta el tamaño para xs */
   }
-  /* line 32, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+  /* line 51, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
   .ascensores-subtitle {
     font-size: 1em !important;
     /* Ajusta el tamaño para xs */
   }
 }
 
-/* line 37, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/**************************************************************************************
+QUIENES SOMOS
+***************************************************************************************/
+/* line 60, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .quienes-somos-container {
   background-color: white;
   /* Color de fondo similar a la imagen */
@@ -14886,42 +14928,42 @@ body {
   /* Añade un padding general para evitar que el texto toque los bordes */
 }
 
-/* line 42, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 65, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .quienes-somos-titulo {
   text-align: center;
   margin-bottom: 20px;
 }
 
-/* line 47, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 70, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .quienes-somos-texto {
   text-align: justify;
   margin-left: 1em;
   margin-right: 1em;
 }
 
-/* line 52, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 75, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .quienes-somos-titulo2 {
   position: relative;
   bottom: 0%;
 }
 
-/* line 53, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 76, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 #carousel-trabajos-container {
   background-color: white;
 }
 
-/* line 54, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 77, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 #logos-div-principal {
   background-color: white;
 }
 
-/* line 56, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 79, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 #logosCarousel {
   border: 0.3em solid black;
   border-radius: 0.5em;
 }
 
-/* line 59, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 82, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 #logosCarousel .carousel-item img {
   height: 20vh;
   /* Establece la altura de la imagen al 20% de la altura de la ventana */
@@ -14929,22 +14971,23 @@ body {
   /* O 'cover' según prefieras */
 }
 
-/* line 64, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/**************************************************************************************
+CONTÁCTANOS
+***************************************************************************************/
+/* line 91, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 #contenedor-contactanos {
   background-color: white;
 }
 
-/* line 65, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
-#Piedepagina {
-  background-color: #1F3250;
-}
-
-/* line 67, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/**************************************************************************************
+PRODUCTOS
+***************************************************************************************/
+/* line 98, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 #productos_container {
   background-color: white;
 }
 
-/* line 69, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 100, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .card-img-container {
   width: 100%;
   /* El contenedor ocupa todo el ancho de la card */
@@ -14954,7 +14997,7 @@ body {
   /* Oculta cualquier parte de la imagen que exceda el contenedor */
 }
 
-/* line 75, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 106, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .card-img-top {
   width: 100%;
   /* La imagen ocupa todo el ancho del contenedor */
@@ -14964,31 +15007,25 @@ body {
   /* Ajusta la imagen sin recortar */
 }
 
-/* line 80, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 111, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .precios {
   font-size: 1.5em;
   font-weight: bold;
   color: #1F3250;
 }
 
-/* line 86, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 117, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .card-body-ventas {
   height: 25vh;
   overflow: auto;
   /* Agrega barras de desplazamiento si es necesario */
 }
 
-/* line 90, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 121, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .descripcion-producto {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-/* line 96, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
-.inf-izq {
-  bottom: 10px;
-  right: 10px;
 }
 
 /*# sourceMappingURL=main.css.map */
