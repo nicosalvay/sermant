@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block contactanos %}
+
+<!--Pantalla contactanos-->
+<!---->
+<div id="contactanos">
+</div>
+<div id="contenedor-contactanos" class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Contáctanos</h1>
+        </div>
+        <form id="contactForm" action="" method="post" class="row">
+            {% csrf_token %}
+            <div class="col-12 col-lg-5">
+                <div class="mb-3">
+                    <label for="InputNombre" class="form-label">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" id="InputNombre" placeholder="Escriba aquí su nombre" {% if form.nombre.value %}value="{{ form.nombre.value }}"{% endif %}>
+                    {% if form.nombre.errors %}
+                        <div class="error">{{ form.nombre.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="InputApellido" class="form-label">Apellido</label>
+                    <input type="text" name="apellido" class="form-control" id="InputApellido" placeholder="Escriba aquí su apellido" {% if form.apellido.value %}value="{{ form.apellido.value }}"{% endif %}>
+                    {% if form.apellido.errors %}
+                        <div class="error">{{ form.apellido.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="InputEmail" class="form-label">E-mail</label>
+                    <input type="email" name="email" class="form-control" id="InputEmail" placeholder="Escriba aquí su E-mail" {% if form.email.value %}value="{{ form.email.value }}"{% endif %}>
+                    {% if form.email.errors %}
+                        <div class="error">{{ form.email.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3 row g-3 align-items-center">
+                    <div class="col-auto">
+                        <label for="InputCodigoArea" class="form-label">Código de área</label>
+                        <input type="tel" name="cod_area" class="form-control" id="InputCodigoArea" placeholder="Ej: 351" {% if form.cod_area.value %}value="{{ form.cod_area.value }}"{% endif %}>
+                        {% if form.cod_area.errors %}
+                            <div class="error">{{ form.cod_area.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="col-auto">
+                        <label for="InputNumeroTelefono" class="form-label">Número de teléfono</label>
+                        <input type="tel" name="telefono" class="form-control" id="InputNumeroTelefono" placeholder="Ej: 5987987" {% if form.telefono.value %}value="{{ form.telefono.value }}"{% endif %}>
+                        {% if form.telefono.errors %}
+                            <div class="error">{{ form.telefono.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-7 justify-content-center">
+                <h3>Detalle</h3>
+                <div class="mb-3">
+                    <label for="InputDetalle" class="form-label">Por favor ingrese su inquietud</label>
+                    <textarea name="mensaje" class="form-control" id="InputDetalle" rows="5">{% if form.mensaje.value %}{{ form.mensaje.value }}{% endif %}</textarea>
+                    {% if form.mensaje.errors %}
+                        <div class="error">{{ form.mensaje.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    <label for="{{ form.captcha.id_for_label }}">Captcha:</label>
+                    {{ form.captcha }}
+                    {% if form.captcha.errors %}
+                        <div class="error">{{ form.captcha.errors }}</div>
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--Prueba
+<div class="container">
+    </div>
+
+<div class="container-fluid">
+    <div class="row reflexion justify-content-around align-items-center border" style="padding-top:20px;">
+        <div class="col-12 col-md-5 contacto_form" style="padding-bottom:15px;">
+            <h1 class="hjuan" style="padding-left:15px;">Contacto</h1>
+            <form id="contact" action="" method="post" class="col-xs-12">{% csrf_token %}
+                <div class="col-12 form-group">
+                    {{ form }}
+                </div>
+                <div class="row justify-content-between">
+                    <div class="col-4"></div>
+                    <div class="col-4" style="padding-right:30px;">
+                        <button type="submit" class="col-12 btn btn-danger">Enviar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+-->
+{% endblock %}
