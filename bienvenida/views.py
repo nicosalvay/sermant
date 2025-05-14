@@ -1,14 +1,34 @@
 from django.shortcuts import render
 from productos.models import Producto
 from productos.models import Categoria
-
+from contacto.forms import ConsultaForm
+from django.views.generic import View
+from django.views.generic import FormView
 # Create your views here.
 
-def index (request):
+class Index (FormView):
     #Creamos un diccionario
-    params = {}
-    params ['nombre_sitio'] = 'Pagina Bienvenida'
-    return render (request, 'bienvenida/index.html',params)
+    template_name = 'bienvenida/index.html'
+    form_class = ConsultaForm
+    #success_url contiene la URL a la que se redirigirá al usuario después de que el formulario se haya enviado correctamente.
+    success_url = 'mensaje_enviado'
+    #si el formulario no es válido, se redirige a la misma página.
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
+
+    #form_valid es un método que se llama cuando el formulario es válido. Es un método de la clase FormView.
+    def form_valid(self, form):
+        form.save()
+        form.send_email()
+        return super().form_valid(form)
+
+class MensajeEnviado(View):
+    template_name = 'bienvenida/mensaje_enviado.html'
+
+    def get(self, request):
+        params = {}
+        params['mensaje'] = 'Su mensaje ha sido enviado correctamente.'
+        return render(request, self.template_name, params)
 
 def venta (request):
     # Obtener todos los productos y categorías

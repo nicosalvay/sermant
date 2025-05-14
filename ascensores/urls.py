@@ -27,5 +27,4 @@ urlpatterns = [
     path('accounts/', include('registration.backends.default.urls')),
     path("usuarios/", include('usuarios.urls')),
     path("captcha/", include('captcha.urls')),
-    path("contacto/", include('contacto.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
