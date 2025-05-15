@@ -83,14 +83,21 @@ QUIENES SOMOS
     height: 20vh; /* Establece la altura de la imagen al 20% de la altura de la ventana */
     object-fit: contain; /* O 'cover' según prefieras */
   }
+.linea-solida{
+    opacity: 1;
+    background-color: white;
+    height: 0.2em;
+    margin: 0;
+}
 
 /**************************************************************************************
 CONTÁCTANOS
 ***************************************************************************************/
 
 #contenedor-contactanos{background-color: white;}
-
-
+#baner-contactanos{padding: 0;
+height: 10vh;}
+#img-baner{object-fit: cover;}
 /**************************************************************************************
 PRODUCTOS
 ***************************************************************************************/

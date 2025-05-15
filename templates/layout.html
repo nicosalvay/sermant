@@ -3,47 +3,46 @@
 
 {% block content %}
 <!--NAV Menú Principal-->
-<div class="container p-0 sticky-top">
+
+<div class="sticky-top p-0">
     <nav class="navbar navbar-expand-lg bg-primary py-4">
-        <div class="container-fluid">
-        <a class="navbar-brand text-white" href="#">SER-MANT</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!--Menú alineado a la izquierda-->
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-                <a class="nav-link active textwhite" aria-current="page" href="{% url 'index' %}#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link textwhite" href="{% url 'index' %}#quienes-somos">Quienes somos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link textwhite" href="{% url 'index' %}#contactanos">Contáctanos</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link textwhite" href="{% url 'venta' %}">Productos</a>
-            </li>
-            </ul>
-            <!--Menú alineado a la derecha-->
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="accounts/login">Creá tu cuenta</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Ingresá</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Mis compras</a>
-                </li>
-                <li class="nav-item d-flex align-items-center">
-                    <a href="#" class="nav-link text-white">
-                        <i class="bi bi-cart"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <div class="container">
+            <a class="navbar-brand text-white" href="#">SER-MANT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active textwhite" aria-current="page" href="{% url 'index' %}#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link textwhite" href="{% url 'index' %}#quienes-somos">Quienes somos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link textwhite" href="{% url 'index' %}#contactanos">Contáctanos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link textwhite" href="{% url 'venta' %}">Productos</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="accounts/login">Creá tu cuenta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Ingresá</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Mis compras</a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <a href="#" class="nav-link text-white">
+                            <i class="bi bi-cart"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 </div>
