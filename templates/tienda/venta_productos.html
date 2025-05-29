@@ -64,6 +64,12 @@
                                     <h5 class="card-title">{{ producto.producto }}</h5>
                                     <p class="card-text descripcion-producto">{{ producto.descripcion }}</p>
                                     <p class="card-text precios">${{ producto.precio }}</p>
+                                    <form action="{% url 'venta_productos' %}" method="post">{% csrf_token %}
+                                        <!--input hidden es un campo que no se ve, pero se envia al servidor, en este caso el id del producto-->
+                                        <input hidden type="text" name="producto" value="{{ producto.id }}"/>
+                                        <input type="submit" class="float-right btn btn-primary" value="Comprar"/>
+                                    </form>
+
                                 </div>
                             </div>
                         </div>

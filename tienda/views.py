@@ -81,6 +81,29 @@ class VentaProductos(View):
     
         return render(request, self.template, params)
 
+    def post(self, request):
+        params = {}
+        producto=request.POST.get("producto")
+
+        #request.session.get("el_pedido") obtiene el valor de la sesión "el_pedido" que se creó en el método GET.
+        # Si la sesión "el_pedido" existe, se obtiene su valor. Si no existe, se crea un nuevo diccionario vacío.
+        el_pedido = request.session.get("el_pedido")
+        if el_pedido:
+            
+            cantidad = el_pedido.get(producto)
+            if cantidad:
+                el_pedido[producto]=cantidad+1
+            else:
+                el_pedido[producto]=1
+        else:
+            el_pedido={}
+            el_pedido[producto]=1
+
+        request.session["el_pedido"]=el_pedido
+        print(request.session["el_pedido"])
+
+        return redirect("venta_productos")
+
 def ver_imagen(request, producto_id):
     # Se obtiene el producto por su ID 
     params={}

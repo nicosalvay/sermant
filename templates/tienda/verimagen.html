@@ -35,11 +35,30 @@
             {% if producto.imagen %}
                 <img src="{{ producto.imagen.url }}" alt="Imagen principal del producto" class="img-fluid mb-3" style="max-height:200px;object-fit:contain;">
             {% endif %}
-            <p><strong>Precio:</strong> ${{ producto.precio }}</p>
-            <p><strong>Stock:</strong> {{ producto.stock }}</p>
-            <p><strong>Fecha de Publicación:</strong> {{ producto.fecha_publicacion }}</p>
-            <p><strong>Categoría:</strong> {{ producto.categoria.nombre }}</p>
-            <p><strong>Estado:</strong> {{ producto.estado }}</p>
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <td><strong>Precio:</strong></td>
+                        <td>${{ producto.precio }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Stock:</strong></td>
+                        <td>{{ producto.stock }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fecha de Publicación:</strong></td>
+                        <td>{{ producto.fecha_publicacion }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Categoría:</strong></td>
+                        <td>{{ producto.categoria.nombre }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Estado:</strong></td>
+                        <td>{{ producto.estado }}</td>
+                    </tr>
+                </tbody>
+            </table>
 
         </div>
         
