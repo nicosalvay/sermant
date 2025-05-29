@@ -1,0 +1,11 @@
+from django.urls import path
+from tienda import views
+from tienda.views import VentaProductos
+
+
+urlpatterns = [
+    path('cargar/', views.cargar_producto, name="carga_producto"),
+    #Declaramos el id del producto como parte de la url
+    path('<int:producto_id>/ver/', views.ver_imagen, name="ver_producto"),
+    path('venta_productos/', VentaProductos.as_view(), name="venta_productos"),
+]

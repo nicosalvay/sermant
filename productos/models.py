@@ -39,6 +39,6 @@ class Categoria(models.Model):
         return self.nombre
     
 class ImgProducto(models.Model):
-    estado = models.CharField(max_length=10, choices=[('Activo', 'Activo'), ('No activo', 'No activo')])
+    estado = models.CharField(max_length=10, choices=[('Activo', 'Activo'), ('No activo', 'No activo')],default='No Activo')
     imagen = models.ImageField(upload_to="img_productos/%Y/%m/%d", blank=True, null=True)
     producto = models.ForeignKey('Producto', on_delete=models.CASCADE, related_name="imagenes")

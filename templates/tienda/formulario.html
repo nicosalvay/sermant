@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block tienda %}
+<title>Formulario de Carga de Producto</title>
+<div class="container p-0">
+    <img src="{% static 'img/baner.png' %}" class="w-100 h-100" alt="Baner">
+</div>
+<div class="container">
+    <div class="row p-2" id="mensaje_enviado">
+        <h2>Formulario de Carga de Producto</h1>
+        <div class="col-md-12" >
+            <form action="{% url 'carga_producto' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+                <div class="row">
+                    <div class="col-md-3" >
+                        <div class="mb-3">
+                            {{ form.categoria.label_tag }}
+                            {{ form.categoria }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.producto.label_tag }}
+                            {{ form.producto }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.stock.label_tag }}
+                            {{ form.stock }}
+                        </div>
+                    </div>
+                    <div class="col-md-3" >
+                        <div class="mb-3">
+                            {{ form.fecha_publicacion.label_tag }}
+                            {{ form.fecha_publicacion }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.precio.label_tag }}
+                            {{ form.precio }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.estado.label_tag }}
+                            {{ form.estado }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.imagen.label_tag }}
+                            {{ form.imagen }}
+                        </div>
+                    </div>
+                    <div class="col-md-6" >
+                        <div class="mb-3">
+                            {{ form.descripcion.label_tag }}
+                            {{ form.descripcion }}
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Imágenes del Producto</h2>
+                {{ imagenes_formset.management_form }}
+                {% for image_form in imagenes_formset %}
+                <div class="border p-2 mb-2">
+                    {{ image_form.imagen.label_tag }}
+                    {{ image_form.imagen }}
+                    {{ image_form.estado.label_tag }}
+                    {{ image_form.estado }}
+                    {{ image_form.DELETE.label_tag }}
+                    {{ image_form.DELETE }}
+                    {{ image_form.id }}
+                    {{ image_form.producto }}
+                </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary mt-3">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- El formulario HTML plano fue reemplazado por el formulario de Django en el bloque principal.
+    Si necesitas mostrar campos individuales en vez de {{ form }}, puedes renderizarlos así: -->
+{% endblock %}
+
+

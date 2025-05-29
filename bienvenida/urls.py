@@ -9,5 +9,5 @@ urlpatterns = [
     #path('',views.index, name='index'),
     path('', Index.as_view(), name="index"),
     path('mensaje_enviado', MensajeEnviado.as_view(), name="mensaje_enviado"),
-    path('venta',views.venta, name='venta'),
+    #path('venta',views.venta, name='venta'),
 ]

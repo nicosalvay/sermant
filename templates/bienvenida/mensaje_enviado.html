@@ -3,26 +3,20 @@
 
 {% block contactanos %}
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensaje Enviado</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        h1 {
-            color: #4CAF50;
-        }
-    </style>
-</head>
-<body>
-    <h1>¡Formulario recibido!</h1>
-    <p>Gracias por contactarnos. Hemos recibido tu mensaje y te responderemos a la brevedad.</p>
-</body>
-</html>
+<title>Mensaje Enviado</title>
+
+<div class="container p-0">
+    <img src="{% static 'img/baner.png' %}" class="w-100 h-100" alt="Baner">
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center" id="mensaje_enviado">
+            <h1>¡Formulario recibido!</h1>
+            <p>¡Gracias por contactarnos!</p>
+            <p>Hemos recibido tu mensaje y te responderemos a la brevedad.</p>
+            <img src="{% static 'img/gracias_contacto.png' %}" id="img-contacto-recibido" alt="Gracias por contactarnos">
+        </div>
+    </div>
+</div>
+
 {% endblock %}

@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block contenedor %}
+
+<div id="contenedor-contactanos" class="container p-2">
+    <h2>Producto: {{ producto.producto }}</h2>
+    <div class="row">
+        <div class="col-md-8">
+            {% if producto.imagenes.all %}
+            <div id="carouselProducto" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for imagen in producto.imagenes.all %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <img src="{{ imagen.imagen.url }}" class="d-block w-100" alt="Imagen del producto" style="height:40vh;object-fit:contain;">
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselProducto" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselProducto" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
+            {% else %}
+            <p>No hay imágenes para este producto.</p>
+            {% endif %}
+        </div>
+        <div class="col-md-4">
+            <h3>Detalles del Producto</h3>
+            <p><strong>Descripción:</strong> {{ producto.descripcion }}</p>
+            {% if producto.imagen %}
+                <img src="{{ producto.imagen.url }}" alt="Imagen principal del producto" class="img-fluid mb-3" style="max-height:200px;object-fit:contain;">
+            {% endif %}
+            <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+            <p><strong>Stock:</strong> {{ producto.stock }}</p>
+            <p><strong>Fecha de Publicación:</strong> {{ producto.fecha_publicacion }}</p>
+            <p><strong>Categoría:</strong> {{ producto.categoria.nombre }}</p>
+            <p><strong>Estado:</strong> {{ producto.estado }}</p>
+
+        </div>
+        
+    </div>
+</div>
+{% endblock %}
