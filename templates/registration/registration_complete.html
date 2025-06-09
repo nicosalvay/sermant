@@ -3,7 +3,7 @@
 
 {% block title %}{% trans "Activation email sent" %}{% endblock %}
 
-{% block content %}
+{% block registration %}
 <p>
   {% blocktrans with email=request.session.registration_email %}
     Please check your email, {{ email }}, to complete the registration process.

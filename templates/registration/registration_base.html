@@ -1,1 +1,16 @@
-{% extends "base.html" %}
+{% extends "layout.html" %}
+{% load static %}
+
+{% block registration_base %}
+<div class="container" id="baner-contactanos">
+    <img src="{% static 'img/baner.png' %}" class="w-100 h-100" id="img-baner" alt="Baner">
+</div>
+
+<div id="contenedor-contactanos" class="container p-5">
+    <div class="row justify-content-center">
+        {% block registration %}
+        {% endblock %}
+        
+    </div>
+</div>
+{% endblock %}

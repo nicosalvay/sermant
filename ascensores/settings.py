@@ -156,3 +156,6 @@ SITE_ID = 1 # SITE_ID = 1, estás diciendo que este es el sitio principal o pred
 LOGIN_REDIRECT_URL = "/" # Define a qué vista voy luego del logueo.
 LOGIN_URL = "django.contrib.auth.views.login" # Define la URL de la vista que maneja el proceso de inicio de sesión.
 
+# Configuración del backend de correo electrónico para desarrollo
+# En desarrollo, puedes usar el backend de consola para ver los correos electrónicos en la terminal.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

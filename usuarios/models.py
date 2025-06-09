@@ -5,10 +5,8 @@ import time
 
 # Create your models here.
 class Datousuario (models.Model):
-    usuario = models.ForeignKey (User,blank=False, null=True,on_delete=models.CASCADE)
+    usuario = models.OneToOneField (User,blank=False, null=True,on_delete=models.CASCADE)
     imagen = models.ImageField (upload_to="producto/%Y/%m/%d", default="defecto=defecto.png", blank=True, null=True)
-    nombre = models.CharField (max_length=50)
-    apellido = models.CharField (max_length=50)
     fecha_nacimiento = models.DateField (blank=True, null=True)
     pais = models.CharField (max_length=30, blank=True)
     provincia = models.CharField (max_length=40, blank=True)
@@ -22,3 +20,4 @@ class Datousuario (models.Model):
 
 def __str__(self):
     return self.usuario.username
+

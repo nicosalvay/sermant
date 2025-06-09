@@ -3,7 +3,7 @@
 
 {% block title %}{% trans "Log in" %}{% endblock %}
 
-{% block content %}
+{% block registration %}
 <!--<form method="post" action="">
     {% csrf_token %}
     {{ form.as_p }}
@@ -22,19 +22,9 @@
                     {% trans 'Log in' %}
                 </div>
                 <div class="card-body">
-                    <form method="post" action="">
+                    <form method="post" action=""> {% csrf_token %}
                         {% csrf_token %}
-                        {% for field in form %}
-                            <div class="mb-3">
-                                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                                {{ field }}
-                                {% if field.errors %}
-                                    <div class="invalid-feedback d-block">
-                                        {{ field.errors|join:", " }}
-                                    </div>
-                                {% endif %}
-                            </div>
-                        {% endfor %}
+                        {{ form.as_p }}
                         <input type="hidden" name="next" value="{{ next }}" />
                         <button type="submit" class="btn btn-primary">{% trans 'Log in' %}</button>
                     </form>

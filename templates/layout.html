@@ -33,12 +33,32 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="accounts/login">Creá tu cuenta</a>
+                    <li class="nav-item d-flex align-items-center">
+                        <a href="#" class="nav-link text-white">
+                            <i class="bi bi-person-circle"></i>
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Ingresá</a>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle textwhite" href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ user.username }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="usuarioDropdown">
+                            <li><a class="dropdown-item" href="{% url 'usuarios' %}">Perfil</a></li>
+                            <li><a class="dropdown-item" href="{% url 'auth_logout' %}">Salir</a></li>
+                        </ul>
                     </li>
+                    {% else %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle textwhite" href="#" id="usuarioDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Ingresar
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="usuarioDropdown">
+                            <li><a class="dropdown-item" href="{% url 'auth_login' %}">Ingresar</a></li>
+                            <li><a class="dropdown-item" href="{% url 'registration_register' %}">Registrarse</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Mis compras</a>
                     </li>
@@ -88,7 +108,8 @@
 {% endblock %}
 {% block tienda %}
 {% endblock %}
-
+{% block registration_base %}
+{% endblock %}
 <footer id="Piedepagina" class="py-1">
     <div class="container text-white">
         <div class="row">

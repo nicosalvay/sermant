@@ -2,7 +2,8 @@
 from django.urls import path
 # Importamos la función creada
 from usuarios import views
+from usuarios.views import ModUsuarios
 
 urlpatterns = [
-    path('',views.usuarios, name='usuarios'),
+    path('usuarios',ModUsuarios.as_view(), name='usuarios'),
 ]

@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}Usuarios{% endblock %}
+
+{% block contenedor %}
+
+<div class="container" id="baner-contactanos">
+    <img src="{% static 'img/baner.png' %}" class="w-100 h-100" id="img-baner" alt="Baner">
+</div>
+
+<div id="contenedor-contactanos" class="container p-5">
+    <div class="row">
+        <div class="col-12">
+            <h1>Información de Usuario</h1>
+        </div>
+        <form id="contactForm" action="" method="post" class="row"> {% csrf_token %}
+            <div class="col-lg-4">
+            {{form_user}}
+            {{form_adicional}}
+            </div>
+            
+            <div class="col-12 text-center">
+                <br>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+<!--
+<div class="col-lg-4">
+    <div class="mb-3">
+        <label for="id_username" class="form-label">Username:</label>
+        <input type="text" name="username" value="Belen" class="form-control" required id="id_username">
+    </div>
+    <div class="mb-3">
+        <label for="id_email" class="form-label">Email:</label>
+        <input type="email" name="email" value="belen@gmail.com" class="form-control" required id="id_email">
+    </div>
+    <div class="mb-3">
+        <label for="id_first_name" class="form-label">Nombre/s:</label>
+        <input type="text" name="first_name" class="form-control" required id="id_first_name">
+    </div>
+    <div class="mb-3">
+        <label for="id_last_name" class="form-label">Apellido/s:</label>
+        <input type="text" name="last_name" class="form-control" required id="id_last_name">
+    </div>
+    <div class="mb-3">
+        <label for="id_imagen" class="form-label">Imagen:</label>
+        <input type="file" name="imagen" class="form-control" accept="image/*" id="id_imagen">
+    </div>
+    <div class="mb-3">
+        <label for="id_fecha_nacimiento" class="form-label">Fecha nacimiento:</label>
+        <input type="date" name="fecha_nacimiento" class="form-control" required id="id_fecha_nacimiento">
+    </div>
+    <div class="mb-3">
+        <label for="id_telefono" class="form-label">Telefono:</label>
+        <input type="text" name="telefono" class="form-control" required id="id_telefono">
+    </div>
+    <div class="mb-3">
+        <label for="id_celular" class="form-label">Celular:</label>
+        <input type="text" name="celular" class="form-control" required id="id_celular">
+    </div>
+    <div class="mb-3">
+        <label for="id_documento" class="form-label">Documento:</label>
+        <input type="text" name="documento" class="form-control" required id="id_documento">
+    </div>
+    <div class="mb-3">
+        <label for="id_cuit" class="form-label">Cuit:</label>
+        <input type="text" name="cuit" class="form-control" required id="id_cuit">
+    </div>
+</div>
+-->
