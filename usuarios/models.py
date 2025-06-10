@@ -18,6 +18,6 @@ class Datousuario (models.Model):
     documento = models.CharField (max_length=30, blank=True)
     cuit = models.CharField (max_length=30, blank=True)
 
-def __str__(self):
-    return self.usuario.username
+    def __str__(self):
+        return self.usuario.username
 
