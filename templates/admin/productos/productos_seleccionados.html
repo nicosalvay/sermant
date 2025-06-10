@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container p-5">
+  <div class="row justify-content-center">
+    <div class="col-12">
+        <h1 class="text-center mb-4 text-white">Productos Seleccionados</h1>
+        
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Estado</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for producto in productos %}
+                <tr>
+                <td>{{ producto.producto }}</td>
+                <td>{{ producto.estado }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="text-center mt-4">
+        <a href="{% url 'admin:productos_producto_changelist' %}" class="btn btn-secondary">Regresar a productos</a>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
