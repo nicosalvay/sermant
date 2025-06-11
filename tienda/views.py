@@ -78,7 +78,16 @@ class VentaProductos(View):
         'categorias': categorias,
         'imagenes': imagenes,
         }
-    
+        # ###############################################################
+        # INICIALIZAR LA VARIABLE DE SESSION CARRO
+        # ###############################################################
+        try:
+            #request.session es un diccionario que almacena datos de sesión
+            # y se utiliza para almacenar información específica del usuario
+            request.session["carro"]
+        except:
+            request.session["carro"] = {}
+
         return render(request, self.template, params)
 
     def post(self, request):
