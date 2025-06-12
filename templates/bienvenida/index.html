@@ -76,44 +76,28 @@
     <div class="row">
         <div class="col-12 p-1">
             <h3>Empresas que confiaron en nosotros</h3>
-            <div id="logosCarousel" class="carousel carousel-dark slide" data-bs-ride="carousel p-0" >
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="row justify-content-center">
-                            <div class="col-md-2">
-                                <img src="{% static 'img/Logo1.jpg' %}" class="d-block w-100" alt="Logo 1">
-                            </div>
-                            <div class="col-md-1">
-                                <img src="{% static 'img/Logo2.png' %}" class="d-block w-100" alt="Logo 2">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="{% static 'img/Logo3.png' %}" class="d-block w-100" alt="Logo 3">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="{% static 'img/Logo4.png' %}" class="d-block w-100" alt="Logo 4">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="{% static 'img/Logo5.png' %}" class="d-block w-100" alt="Logo 5">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="row justify-content-center">
-                            <div class="col-md-2">
-                                <img src="{% static 'img/Logo6.png' %}" class="d-block w-100" alt="Logo 6">
-                            </div>
-                        </div>
-                    </div>
+            <div class="logos-slider"> {# Este será tu contenedor Slick #}
+                <div class="logo-item">
+                    <img src="{% static 'img/Logo1.jpg' %}" class="d-block w-100" alt="Logo 1">
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#logosCarousel" data-bs-slide="prev">
-                <span class="bi bi-arrow-left-circle-fill fs-2 text-primary-emphasis" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#logosCarousel" data-bs-slide="next">
-                <span class="bi bi-arrow-right-circle-fill fs-2 text-primary-emphasis" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-                </button>
+                <div class="logo-item">
+                    <img src="{% static 'img/Logo2.png'%}" class="d-block w-100" alt="Logo 2">
+                </div>
+                <div class="logo-item">
+                    <img src="{% static 'img/Logo3.png' %}" class="d-block w-100" alt="Logo 3">
+                </div>
+                <div class="logo-item">
+                    <img src="{% static 'img/Logo4.png' %}" class="d-block w-100" alt="Logo 4">
+                </div>
+                <div class="logo-item">
+                    <img src="{% static 'img/Logo5.png' %}" class="d-block w-100" alt="Logo 5">
+                </div>
+                <div class="logo-item">
+                    <img src="{% static 'img/Logo6.png' %}" class="d-block w-100" alt="Logo 6">
+                </div>
+                {# Puedes añadir más logos aquí si los tienes #}
             </div>
+            
         </div>
     </div>
 </div>
@@ -194,4 +178,8 @@
         </form>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/bienvenida.js' %}"></script>
 {% endblock %}
