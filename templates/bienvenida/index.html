@@ -10,14 +10,14 @@
         <div class="col-12 col-lg-7 d-flex align-items-center justify-content-center p-0 position-relative home-img">
             <img src="{% static 'img/Ascensor frente.jpg' %}" alt="Logo SER-MANT" class="img-fluid w-100 h-100 home-img" id="logo-sermant">
             <div class="position-absolute text-center text-white">
-                <span class="sermant-title">SER-MANT</span> <br>
-                <span class="ascensores-subtitle">ASCENSORES</span>
+                <span class="sermant-title anim-zoom-hover">SER-MANT</span> <br>
+                <span class="ascensores-subtitle anim-zoom-hover">ASCENSORES</span>
             </div>
         </div>
         <div class="col-12 col-lg-5 d-flex align-items-stretch p-0 d-none d-lg-block position-relative home-img">
             <img src="{% static 'img/Edificio.jpg' %}" alt="Edificio" class="img-fluid w-100 h-100 home-img" id="edificio-home">
             <a href="https://wa.me/3512421366" target="_blank" class="position-absolute inf-der">
-                <img src="{% static 'img/WhatsApp.webp' %}" alt="WhatsApp" class="home-whatsapp">
+                <img src="{% static 'img/WhatsApp.webp' %}" alt="WhatsApp" class="home-whatsapp anim-zoom-hover">
             </a>
         </div>
     </div>
@@ -78,22 +78,22 @@
             <h3>Empresas que confiaron en nosotros</h3>
             <div class="logos-slider"> {# Este será tu contenedor Slick #}
                 <div class="logo-item">
-                    <img src="{% static 'img/Logo1.jpg' %}" class="d-block w-100" alt="Logo 1">
+                    <img src="{% static 'img/Logo1.jpg' %}" class="d-block w-100 anim-zoom-hover" alt="Logo 1">
                 </div>
                 <div class="logo-item">
-                    <img src="{% static 'img/Logo2.png'%}" class="d-block w-100" alt="Logo 2">
+                    <img src="{% static 'img/Logo2.png'%}" class="d-block w-100 anim-zoom-hover" alt="Logo 2">
                 </div>
                 <div class="logo-item">
-                    <img src="{% static 'img/Logo3.png' %}" class="d-block w-100" alt="Logo 3">
+                    <img src="{% static 'img/Logo3.png' %}" class="d-block w-100 anim-zoom-hover" alt="Logo 3">
                 </div>
                 <div class="logo-item">
-                    <img src="{% static 'img/Logo4.png' %}" class="d-block w-100" alt="Logo 4">
+                    <img src="{% static 'img/Logo4.png' %}" class="d-block w-100 anim-zoom-hover" alt="Logo 4">
                 </div>
                 <div class="logo-item">
-                    <img src="{% static 'img/Logo5.png' %}" class="d-block w-100" alt="Logo 5">
+                    <img src="{% static 'img/Logo5.png' %}" class="d-block w-100 anim-zoom-hover" alt="Logo 5">
                 </div>
                 <div class="logo-item">
-                    <img src="{% static 'img/Logo6.png' %}" class="d-block w-100" alt="Logo 6">
+                    <img src="{% static 'img/Logo6.png' %}" class="d-block w-100 anim-zoom-hover" alt="Logo 6">
                 </div>
                 {# Puedes añadir más logos aquí si los tienes #}
             </div>
@@ -181,5 +181,7 @@
 {% endblock %}
 
 {% block scripts %}
+<script src="{% static 'js/minified/gsap.min.js' %}"></script>
 <script src="{% static 'js/bienvenida.js' %}"></script>
+<script src="{% static 'js/minified/ScrollTrigger.min.js' %}"></script>
 {% endblock %}

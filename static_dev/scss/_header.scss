@@ -18,6 +18,14 @@ body {background-color: $color_azul_web;margin: 0;}
 }
 #Piedepagina{background-color: $color_azul_web;}
 
+
+#mi_navbar {
+    a {
+        display: inline-block;
+    }
+}
+
+
 /**************************************************************************************
 HOME
 ***************************************************************************************/
@@ -36,10 +44,12 @@ HOME
     background-color: $color_azul_web_trans; /* Fondo azul con 50% de transparencia */
     padding: 0.1em; /* Opcional: añade un poco de espacio alrededor del texto */
     border-radius: 0.1em; /* Opcional: añade bordes redondeados */
+    display: inline-block;
 }
 
 .ascensores-subtitle {
     font-size: 1.5em;
+    display: inline-block;
 }
 
 /* Estilos para pantallas xs (extra pequeñas) */
@@ -155,12 +165,34 @@ QUIENES SOMOS
     object-fit: contain; /* O 'cover' según prefieras */
   }
 .linea-solida{
-    opacity: 1;
+    opacity: 0;
     background-color: white;
     height: 0.2em;
     margin: 0;
 }
 
+/* Para el contenedor-quienes-somos */
+#contenedor-quienes-somos h1,
+#contenedor-quienes-somos p {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Para el carrusel de trabajos */
+/* NOTA: Animamos el h3, y luego el .carousel-inner que contiene las imágenes */
+#carousel-trabajos-container h3,
+#carousel-trabajos-container .carousel-inner { /* Esto oculta las imágenes del carrusel inicialmente */
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Para el contenedor de logos */
+/* NOTA: Animamos el h3 y el logos-slider (que contiene las imágenes de logo) */
+#logos-div-principal h3,
+#logos-div-principal .logos-slider {
+  opacity: 0;
+  visibility: hidden;
+}
 /**************************************************************************************
 CONTÁCTANOS
 ***************************************************************************************/
@@ -204,4 +236,29 @@ PRODUCTOS
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+/* Para el contenedor-quienes-somos */
+#contenedor-quienes-somos h1,
+#contenedor-quienes-somos p,
+#carousel-trabajos-container h3,
+#carousel-trabajos-container .carousel-inner { /* Esto oculta las imágenes del carrusel inicialmente */
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Para el contenedor de logos */
+#logos-div-principal h3,
+#logos-div-principal .logos-slider {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* --- NUEVAS REGLAS PARA EL CONTENEDOR DE CONTACTO --- */
+#contenedor-contactanos h1,
+#contenedor-contactanos h3,
+#contenedor-contactanos .mb-3, /* Oculta cada grupo de campo (label + input) */
+#contenedor-contactanos button[type="submit"] { /* Oculta el botón de enviar */
+  opacity: 0;
+  visibility: hidden;
 }
