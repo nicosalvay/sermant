@@ -4,7 +4,8 @@ from productos.models import Producto, Categoria, ImgProducto
 from django.shortcuts import redirect
 from django.http import Http404
 from django.views.generic import View
- 
+from productos.forms import SearchProductoForm
+
 def cargar_producto(request):
     params={}
 
@@ -61,22 +62,46 @@ def cargar_producto(request):
 
 class VentaProductos(View):
     template = 'tienda/venta_productos.html'
+
+    # Define tu propio método para verificar AJAX
+    def is_ajax(self, request):
+        return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
     
     def get(self, request):
+
+        search_form = SearchProductoForm(request.GET)
         params={}
         try:
             # Se obtienen todos los productos de la base de datos
             # Se utiliza el método all() para obtener todos los objetos de la clase Producto
+            search = SearchProductoForm()
             productos = Producto.objects.all()
             categorias = Categoria.objects.all()
             imagenes = ImgProducto.objects.all()
         except Producto.DoesNotExist:
             raise Http404
+        
+        query = request.GET.get('querycom', '').strip() 
+        if query:
+            productos = productos.filter(producto__icontains=query)
+
+        # Filtro por categorías
+        categorias_seleccionadas_ids = request.GET.getlist('categorias')
+        if categorias_seleccionadas_ids:
+            # Asegúrate de que los IDs son números enteros para una consulta segura
+            try:
+                categorias_seleccionadas_ids = [int(cat_id) for cat_id in categorias_seleccionadas_ids]
+                productos = productos.filter(categoria__id__in=categorias_seleccionadas_ids)
+            except ValueError:
+                # Manejar el error si un ID de categoría no es un número válido
+                pass # Puedes loggear el error o ignorar el filtro
+
         params = {
         'nombre_sitio': 'Venta de Productos',
         'productos': productos,
         'categorias': categorias,
         'imagenes': imagenes,
+        'search': search,
         }
         # ###############################################################
         # INICIALIZAR LA VARIABLE DE SESSION CARRO
