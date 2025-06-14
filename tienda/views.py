@@ -2,7 +2,7 @@ from django.shortcuts import render
 from tienda.forms import CargaProducto, ImagenesProductoFormSet
 from productos.models import Producto, Categoria, ImgProducto
 from django.shortcuts import redirect
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.views.generic import View
 from productos.forms import SearchProductoForm
 
@@ -60,6 +60,7 @@ def cargar_producto(request):
         params['imagenes_formset'] = imagenes_formset  # Pasa el formset al template en el GET
         return render(request, 'tienda/formulario.html', params)
 
+
 class VentaProductos(View):
     template = 'tienda/venta_productos.html'
 
@@ -68,41 +69,74 @@ class VentaProductos(View):
         return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
     
     def get(self, request):
-
-        search_form = SearchProductoForm(request.GET)
         params={}
-        try:
-            # Se obtienen todos los productos de la base de datos
-            # Se utiliza el método all() para obtener todos los objetos de la clase Producto
-            search = SearchProductoForm()
-            productos = Producto.objects.all()
-            categorias = Categoria.objects.all()
-            imagenes = ImgProducto.objects.all()
-        except Producto.DoesNotExist:
-            raise Http404
-        
-        query = request.GET.get('querycom', '').strip() 
+        search_form = SearchProductoForm(request.GET)
+        productos = Producto.objects.all()
+        categorias_seleccionadas_ids_str = request.GET.getlist('categorias')
+
+        query = request.GET.get('querycom', '').strip()
         if query:
             productos = productos.filter(producto__icontains=query)
-
-        # Filtro por categorías
-        categorias_seleccionadas_ids = request.GET.getlist('categorias')
-        if categorias_seleccionadas_ids:
-            # Asegúrate de que los IDs son números enteros para una consulta segura
+        
+        # 2. Filtro por categorías seleccionadas (usando la lista de strings)
+        if categorias_seleccionadas_ids_str: # Ahora usamos la versión string para el filtro
             try:
-                categorias_seleccionadas_ids = [int(cat_id) for cat_id in categorias_seleccionadas_ids]
-                productos = productos.filter(categoria__id__in=categorias_seleccionadas_ids)
+                # Convertir los IDs de string a entero para la consulta de la base de datos
+                categorias_seleccionadas_ids_int = [int(cat_id) for cat_id in categorias_seleccionadas_ids_str]
+                productos = productos.filter(categoria__id__in=categorias_seleccionadas_ids_int)
             except ValueError:
-                # Manejar el error si un ID de categoría no es un número válido
-                pass # Puedes loggear el error o ignorar el filtro
+                print("Advertencia: Se recibió un ID de categoría no válido.")
+                pass 
+        
+        #Filtro por rango de precios
+        precio_desde = request.GET.get('precioDesde')
+        precio_hasta = request.GET.get('precioHasta')
+        if precio_desde:
+            try:
+                productos = productos.filter(precio__gte=float(precio_desde))
+            except ValueError:
+                pass
+        if precio_hasta:
+            try:
+                productos = productos.filter(precio__lte=float(precio_hasta))
+            except ValueError:
+                pass
+        try:
+            #search = SearchProductoForm()
+            #productos = Producto.objects.all()
+            categorias = Categoria.objects.all()
+            imagenes = ImgProducto.objects.all()
+        except Exception as e: 
+            print(f"Error al obtener categorías/imágenes: {e}")
+            raise Http404("No se pudieron cargar recursos esenciales.")
+        
+        # --- Determinar si la petición es AJAX o una carga de página completa ---
+        if self.is_ajax(request):
+            # Es una petición AJAX, solo devuelve los datos de los productos
+            productos_data = []
+            for prod in productos:
+                productos_data.append({
+                    'id': prod.id,
+                    'producto': prod.producto,
+                    'descripcion': prod.descripcion,
+                    'precio': str(prod.precio), # Decimales a string para JSON
+                    'stock': prod.stock,
+                    'imagen_url': prod.imagen.url if prod.imagen else '',
+                    # 'detalle_url': reverse('nombre_de_tu_url_de_detalle_producto', args=[prod.id])
+                })
+            return JsonResponse({'productos': productos_data})
+        else:
+            # Es una carga de página normal, renderiza la plantilla HTML completa
+            params = {
+                'nombre_sitio': 'Venta de Productos',
+                'productos': productos, # Ahora 'productos' contendrá los productos filtrados por texto y/o categoría
+                'categorias': categorias, # Pasa todas las categorías para los checkboxes
+                'imagenes': imagenes,
+                'search': search_form, # Pasa el formulario para que el input mantenga el valor
+                'selected_category_ids': categorias_seleccionadas_ids_str, 
 
-        params = {
-        'nombre_sitio': 'Venta de Productos',
-        'productos': productos,
-        'categorias': categorias,
-        'imagenes': imagenes,
-        'search': search,
-        }
+            }
+
         # ###############################################################
         # INICIALIZAR LA VARIABLE DE SESSION CARRO
         # ###############################################################

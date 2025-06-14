@@ -15151,16 +15151,33 @@ PRODUCTOS
 }
 
 /* line 214, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+.card hr {
+  border: 0;
+  border-top: 1px solid #bbb;
+  margin: 0.2em 0;
+  height: 0;
+  background: none;
+}
+
+@media (max-width: 991.98px) {
+  /* line 223, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+  .card h5, .card .h5,
+  .card p:not(.precios) {
+    font-size: .8em !important;
+  }
+}
+
+/* line 228, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .card-img-container {
   width: 100%;
   /* El contenedor ocupa todo el ancho de la card */
-  height: 25vh;
+  height: 20vh;
   /* Establece una altura fija para el contenedor */
   overflow: hidden;
   /* Oculta cualquier parte de la imagen que exceda el contenedor */
 }
 
-/* line 220, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 234, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .card-img-top {
   width: 100%;
   /* La imagen ocupa todo el ancho del contenedor */
@@ -15170,21 +15187,21 @@ PRODUCTOS
   /* Ajusta la imagen sin recortar */
 }
 
-/* line 225, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 239, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .precios {
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-weight: bold;
   color: #1F3250;
 }
 
-/* line 231, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 245, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .card-body-ventas {
-  height: 25vh;
+  height: 30vh;
   overflow: auto;
   /* Agrega barras de desplazamiento si es necesario */
 }
 
-/* line 235, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 249, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .descripcion-producto {
   white-space: nowrap;
   overflow: hidden;
@@ -15192,7 +15209,7 @@ PRODUCTOS
 }
 
 /* Para el contenedor-quienes-somos */
-/* line 242, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 256, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 #contenedor-quienes-somos h1, #contenedor-quienes-somos .h1,
 #contenedor-quienes-somos p, #carousel-trabajos-container h3, #carousel-trabajos-container .h3,
 #carousel-trabajos-container .carousel-inner {
@@ -15202,7 +15219,7 @@ PRODUCTOS
 }
 
 /* Para el contenedor de logos */
-/* line 251, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 265, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 #logos-div-principal h3, #logos-div-principal .h3,
 #logos-div-principal .logos-slider {
   opacity: 0;
@@ -15210,7 +15227,7 @@ PRODUCTOS
 }
 
 /* --- NUEVAS REGLAS PARA EL CONTENEDOR DE CONTACTO --- */
-/* line 258, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 272, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 #contenedor-contactanos h1, #contenedor-contactanos .h1,
 #contenedor-contactanos h3,
 #contenedor-contactanos .h3,

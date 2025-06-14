@@ -11,8 +11,7 @@
                 <h2>PRODUCTOS</h2>
             </div>
             <div class="col-12 col-lg-6 d-flex justify-content-lg-end"> 
-                <form id="search-form" action="" method="post" class="input-group w-100"> 
-                    {% csrf_token %}
+                <form id="search-form" action="" method="get" class="input-group w-100"> 
                                     
                     {{ search }} 
                     
@@ -33,8 +32,8 @@
                         <h4>Categorías</h4>
                         {% for categoria in categorias %}
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{ categoria.id }}" id="categoria{{ categoria.id }}" name="categorias">
-                                <label class="form-check-label" for="categoria{{ categoria.id }}">
+                                <input class="form-check-input categoria-checkbox" type="checkbox" value="{{ categoria.id }}" id="categoria{{ categoria.id }}" name="categorias">
+                                    {% if categoria.id|stringformat:"s" in selected_category_ids %}checked{% endif %}>                                <label class="form-check-label" for="categoria{{ categoria.id }}">
                                     {{ categoria.nombre }}
                                 </label>
                             </div>
@@ -76,7 +75,7 @@
                                             <input type="number" name="cantidad" class="form-control text-center cantidad-input" value="0" min="0" max="{{ producto.stock }}" style="max-width: 70px;">
                                             <button class="btn btn-outline-secondary btn-increment" type="button">+</button>
                                         </div>
-                                        <input type="button" class="float-right btn btn-primary" value="Comprar"/>
+                                        <input type="button" class="float-right btn btn-primary add-to-cart-button" value="Comprar"/>
                                     </form>
 
                                 </div>
@@ -92,87 +91,9 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static 'js/tienda.js' %}"></script>
 <script>
-    $('#id_querycom').autocomplete({source:"{% url 'buscar_producto' %}"});
+    const AUTOCMPLETE_URL = "{% url 'buscar_producto' %}";
 </script>
-
-<script = "text/javascript">
-/*jslint browser: true*/
-/*jslint plusplus: true*/
-/*global FormData: false */
-/*global $, jQuery, alert, console*/
-/*
-. . . PARA VALIDAR LOS DATOS . . .
-*/
-var csrftoken = $.cookie('csrftoken');
-function csrfSafeMethod(method) {
-  "use strict";
-  return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-}
-
-function AgregarI(cada_producto_id, valor, cantidadGuardada) {
-  "use strict";
-
-  console.log(cada_producto_id, valor, cantidadGuardada)
-  $.ajax({
-    beforeSend : function (xhr, settings) {
-      if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-        xhr.setRequestHeader("X-CSRFToken", csrftoken);
-      }
-    },
-    url : "/tienda/agregar/",
-    type : "GET",
-    data : { cada_producto_id:cada_producto_id, valor:valor,
-            cantidadGuardada:cantidadGuardada },
-    success : function (json) {
-      console.log(json[0].idproducto.toString())
-      console.log(json[0].cantida.toString())
-      localStorage.setItem(json[0].idproducto.toString(),
-      json[0].cantida.toString());
-      //location.reload();
-    },
-    error : function (xhr, errmsg, err) {
-      console.log('Error en carga de respuesta')
-    }
-  });
-}
-
-$('.btn-primary').click(function (event) {
-  "use strict"; // Habilita el modo estricto de JavaScript para un código más seguro y con menos errores.
-  event.preventDefault();
-
-  let cada_producto_id = $(this).closest('form').find('input[name="producto"]').val();
-  let valor = $(this).closest('form').find('input[name="cantidad"]').val();
-
-  // Imprime el valor de 'cada_producto_id' en la consola del navegador para depuración.
-  console.log('Desde .agregar: ',cada_producto_id);
-
-  // Imprime el valor de 'valor' en la consola del navegador para depuración.
-  console.log('Desde .agregar: ',valor);
-
-
-    //PASO 1: Remuevo todo item que no inicia con prod_
-    console.log(JSON.stringify(localStorage));
-    let i;
-    for(i = 0; i < localStorage.length; i++){
-        let clave_eliminar = localStorage.key(i);
-        if(!clave_eliminar.startsWith("prod_")){
-            localStorage.removeItem(clave_eliminar);
-        }
-    }
-
-    let cantidadGuardada = localStorage.getItem(cada_producto_id);
-    if (cantidadGuardada === null) {
-        cantidadGuardada = 0;
-    }
-    console.log('Cantidad guardada en localStorage:', cantidadGuardada);
-
-
-    AgregarI(cada_producto_id, valor,cantidadGuardada);
-
-    });
-</script>
-
+<script src="{% static 'js/tienda.js' %}"></script>
 {%endblock %}
 

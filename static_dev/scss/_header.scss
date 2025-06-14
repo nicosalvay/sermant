@@ -211,9 +211,23 @@ PRODUCTOS
 
 #productos_container{background-color: white;}
 
+.card hr {
+    border: 0;
+    border-top: 1px solid #bbb;
+    margin: 0.2em 0;
+    height: 0;
+    background: none;
+}
+
+@media (max-width: 991.98px) { // Bootstrap md breakpoint
+    .card h5,
+    .card p:not(.precios) {
+        font-size: .8em !important;
+    }
+}
 .card-img-container {
     width: 100%; /* El contenedor ocupa todo el ancho de la card */
-    height: 25vh; /* Establece una altura fija para el contenedor */
+    height: 20vh; /* Establece una altura fija para el contenedor */
     overflow: hidden; /* Oculta cualquier parte de la imagen que exceda el contenedor */
 }
 
@@ -223,13 +237,13 @@ PRODUCTOS
     object-fit: contain; /* Ajusta la imagen sin recortar */
 }
 .precios{
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: bold;
     color: $color_azul_web;
 }
 
 .card-body-ventas {
-    height: 25vh;
+    height: 30vh;
     overflow: auto; /* Agrega barras de desplazamiento si es necesario */
 }
 .descripcion-producto {
