@@ -33,7 +33,8 @@
                         {% for categoria in categorias %}
                             <div class="form-check">
                                 <input class="form-check-input categoria-checkbox" type="checkbox" value="{{ categoria.id }}" id="categoria{{ categoria.id }}" name="categorias">
-                                    {% if categoria.id|stringformat:"s" in selected_category_ids %}checked{% endif %}>                                <label class="form-check-label" for="categoria{{ categoria.id }}">
+                                    {% if categoria.id|stringformat:"s" in selected_category_ids %}checked{% endif %}
+                                <label class="form-check-label" for="categoria{{ categoria.id }}">
                                     {{ categoria.nombre }}
                                 </label>
                             </div>
@@ -59,7 +60,9 @@
                             <div class="card">
                                 <div class="card-img-container"> 
                                     <a href="{% url 'ver_producto' producto.id %}">
-                                        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                                        <div class="img-aspect-ratio-box"> 
+                                            <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                                        </div>
                                     </a>
                                 </div>
                                 <div class="card-body text-center card-body-ventas">

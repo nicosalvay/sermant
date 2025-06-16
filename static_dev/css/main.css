@@ -15164,44 +15164,84 @@ PRODUCTOS
   .card h5, .card .h5,
   .card p:not(.precios) {
     font-size: .8em !important;
+    margin: 0 !important;
   }
 }
 
-/* line 228, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+@media (min-width: 992px) and (max-width: 1367px) {
+  /* line 231, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+  .card h5, .card .h5,
+  .card p:not(.precios) {
+    font-size: .9em !important;
+    margin: 0 !important;
+  }
+}
+
+/* line 237, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .card-img-container {
   width: 100%;
-  /* El contenedor ocupa todo el ancho de la card */
-  height: 20vh;
-  /* Establece una altura fija para el contenedor */
+  /* Quitamos height: 20vh; aquí, la altura la dará .img-aspect-ratio-box */
   overflow: hidden;
-  /* Oculta cualquier parte de la imagen que exceda el contenedor */
+  /* Esto es clave para el efecto de recorte durante el hover */
+  /* No display: flex; justify-content: center; align-items: center; aquí */
+  position: relative;
+  /* Para el posicionamiento absoluto del aspect-ratio-box */
 }
 
-/* line 234, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
-.card-img-top {
+/* line 245, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+.img-aspect-ratio-box {
   width: 100%;
-  /* La imagen ocupa todo el ancho del contenedor */
-  height: 100%;
-  /* La imagen ocupa toda la altura del contenedor */
-  object-fit: contain;
-  /* Ajusta la imagen sin recortar */
+  padding-bottom: 75%;
+  /* Esto crea una caja con una relación de aspecto 4:3 (altura 75% del ancho) */
+  /* Ajusta este porcentaje (ej: 56.25% para 16:9, 100% para 1:1) 
+                          para que las imágenes se vean completas y bien en el estado normal */
+  position: relative;
+  /* Para el posicionamiento absoluto de la imagen */
+  overflow: hidden;
+  /* Esto contendrá la imagen y permitirá el zoom dentro */
+  /* Esta transición es para que el escalado de GSAP sea suave, se aplicará a este div */
+  transition: transform 0.3s ease-out;
 }
 
-/* line 239, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 257, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+.card-img-top {
+  /* Esta es la clase de tu <img> */
+  position: absolute;
+  /* Posicionamiento absoluto dentro de .img-aspect-ratio-box */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* La imagen se ajusta sin recortarse dentro del aspect-ratio-box */
+  object-position: center;
+  /* Centra la imagen si deja espacio vacío */
+  transition: none;
+  /* Desactivar transiciones CSS propias de la imagen */
+}
+
+/* line 268, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .precios {
   font-size: 1.3em;
   font-weight: bold;
   color: #1F3250;
 }
 
-/* line 245, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 274, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .card-body-ventas {
   height: 30vh;
   overflow: auto;
   /* Agrega barras de desplazamiento si es necesario */
 }
 
-/* line 249, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+@media (max-width: 1366.98px) {
+  /* line 280, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+  .card-body-ventas {
+    height: 35vh;
+  }
+}
+
+/* line 284, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 .descripcion-producto {
   white-space: nowrap;
   overflow: hidden;
@@ -15209,7 +15249,7 @@ PRODUCTOS
 }
 
 /* Para el contenedor-quienes-somos */
-/* line 256, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 291, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 #contenedor-quienes-somos h1, #contenedor-quienes-somos .h1,
 #contenedor-quienes-somos p, #carousel-trabajos-container h3, #carousel-trabajos-container .h3,
 #carousel-trabajos-container .carousel-inner {
@@ -15219,7 +15259,7 @@ PRODUCTOS
 }
 
 /* Para el contenedor de logos */
-/* line 265, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 300, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 #logos-div-principal h3, #logos-div-principal .h3,
 #logos-div-principal .logos-slider {
   opacity: 0;
@@ -15227,7 +15267,7 @@ PRODUCTOS
 }
 
 /* --- NUEVAS REGLAS PARA EL CONTENEDOR DE CONTACTO --- */
-/* line 272, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+/* line 307, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
 #contenedor-contactanos h1, #contenedor-contactanos .h1,
 #contenedor-contactanos h3,
 #contenedor-contactanos .h3,

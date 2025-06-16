@@ -32,7 +32,9 @@ $(document).ready(function() {
                     <div class="card">
                         <div class="card-img-container">
                             <a href="${detalleUrl}">
-                                <img src="${producto.imagen_url}" class="card-img-top" alt="${producto.producto}">
+                                <div class="img-aspect-ratio-box">
+                                    <img src="${producto.imagen_url}" class="card-img-top" alt="${producto.nombre}">
+                                </div>
                             </a>
                         </div>
                         <div class="card-body text-center card-body-ventas">
@@ -59,6 +61,9 @@ $(document).ready(function() {
             $productGrid.append(productCard);
         });
     }
+
+    // Vuelve a inicializar los hover después de cargar nuevos productos
+    initializeProductImageHover(); 
 
     // Manejar el envío del formulario de búsqueda con AJAX
     $('#search-form').submit(function(e) {
@@ -226,5 +231,36 @@ $(document).ready(function() {
                 console.log('Error en carga de respuesta: ' + errmsg);
             }
         });
-    } 
+    }
+
+    // --- Función para animar los "img-aspect-ratio-box" de las imágenes de los productos con GSAP ---
+    function initializeProductImageHover() {
+        if (typeof gsap !== "undefined") {
+            // Selecciona todos los div.img-aspect-ratio-box
+            const imageAspectRatioBoxes = document.querySelectorAll('.card-img-container .img-aspect-ratio-box');
+
+            imageAspectRatioBoxes.forEach(box => {
+                // Crea un tween de hover PAUSADO para cada box
+                const hoverTween = gsap.to(box, {
+                    scale: 1.10, // Escala al 110% el div
+                    duration: 0.3,
+                    ease: "power1.out",
+                    paused: true
+                });
+
+                // Añade los event listeners para mouseenter y mouseleave al CONTENEDOR PRINCIPAL (.card-img-container)
+                // Esto es importante para que el área de hover sea toda la caja visible, no solo el div escalable
+                // El padre de .img-aspect-ratio-box es <a>, y el padre de <a> es .card-img-container
+                box.parentElement.parentElement.addEventListener('mouseenter', () => hoverTween.play());
+                box.parentElement.parentElement.addEventListener('mouseleave', () => hoverTween.reverse());
+            });
+            console.log(`Animación de zoom en imágenes de producto configurada para ${imageAspectRatioBoxes.length} elementos.`);
+        } else {
+            console.warn("GSAP no está cargado. Las animaciones de zoom en imágenes de producto no funcionarán. Asegúrate de incluir la librería GSAP.");
+        }
+    }
+
+    // Llama a la función de inicialización de los hover cuando la página carga por primera vez
+    initializeProductImageHover();
+    
 });
