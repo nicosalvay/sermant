@@ -15278,4 +15278,30 @@ PRODUCTOS
   visibility: hidden;
 }
 
+/* line 315, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+#contenedor-usuarios {
+  background-color: white;
+}
+
+/* line 316, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+#baner-contactanos {
+  padding: 0;
+  height: 10vh;
+}
+
+/* line 318, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+#img-baner {
+  object-fit: cover;
+}
+
+/* line 319, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+#img-contacto-recibido {
+  height: 30vh;
+}
+
+/* line 320, ../../Documents/Diplomatura Django/Proyecto Ser-Mant/ascensores/static_dev/scss/_header.scss */
+#mensaje_enviado {
+  background-color: white;
+}
+
 /*# sourceMappingURL=main.css.map */

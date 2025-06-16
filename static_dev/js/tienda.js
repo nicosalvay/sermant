@@ -51,7 +51,9 @@ $(document).ready(function() {
                                     <input type="number" name="cantidad" class="form-control text-center cantidad-input" value="0" min="0" max="${producto.stock}" style="max-width: 70px;">
                                     <button class="btn btn-outline-secondary btn-increment" type="button">+</button>
                                 </div>
-                                <input type="button" class="float-right btn btn-primary add-to-cart-button" value="Comprar"/>
+                                <button type="button" class="float-right btn btn-primary add-to-cart-button">
+                                    <i class="bi bi-cart"></i> Comprar
+                                </button>
                                 
                             </form>
                         </div>
