@@ -1,0 +1,322 @@
+/* SCSS Document */
+
+/**************************************************************************************
+Estilos generales
+***************************************************************************************/
+
+h1,h2,h3,h4,h5,h6 {color: $color_azul_web;}
+h5{color: white;}
+b {color: $color_azul_web; /* Color del texto en negrita */}
+p {font-size: 1.1em;}
+.bg-primary{background-color:$color_azul_web !important;}
+.textwhite{color:#fff;} 
+body {background-color: $color_azul_web;margin: 0;}
+.sticky-top-con-espacio {
+    position: sticky; /* sticky para mantener el elemento en la parte superior */
+    top: 80px; /* Deja un margen superior */
+    z-index: 1020; /* Asegura que esté por encima de otros elementos */
+}
+#Piedepagina{background-color: $color_azul_web;}
+
+
+#mi_navbar {
+    a {
+        display: inline-block;
+    }
+}
+
+
+/**************************************************************************************
+HOME
+***************************************************************************************/
+
+.home-container{height: 85vh; overflow: hidden;}
+.hom-row, .home-img {height: 100%;}
+.home-img {object-fit: cover;}
+.home-whatsapp{width: 50px; height: auto}
+.inf-der{
+    bottom: 10px; right: 10px;
+}
+
+.sermant-title {
+    font-size: 5em !important;
+    font-weight: bold !important;
+    background-color: $color_azul_web_trans; /* Fondo azul con 50% de transparencia */
+    padding: 0.1em; /* Opcional: añade un poco de espacio alrededor del texto */
+    border-radius: 0.1em; /* Opcional: añade bordes redondeados */
+    display: inline-block;
+}
+
+.ascensores-subtitle {
+    font-size: 1.5em;
+    display: inline-block;
+}
+
+/* Estilos para pantallas xs (extra pequeñas) */
+@media (max-width: 575.98px) { /* Bootstrap xs breakpoint */
+    .sermant-title {
+        font-size: 2em !important; /* Ajusta el tamaño para xs */
+    }
+
+    .ascensores-subtitle {
+        font-size: 1em !important; /* Ajusta el tamaño para xs */
+    }
+}
+
+.ascensores-subtitle {
+    visibility: hidden;
+    position: relative; /* Importante para animar 'left' o 'margin-left' */
+    left: -100%; /* Mueve el elemento completamente a la izquierda fuera de la pantalla */
+
+}
+
+/* Más específico para asegurar que anule otros estilos */
+.logos-slider .slick-list .slick-track .slick-slide.logo-item {
+    display: flex;
+    align-items: center; /* Centra verticalmente */
+    justify-content: center; /* Centra horizontalmente */
+    height: 18vh; /* Muy importante que este div tenga una altura definida */
+}
+
+.logos-slider .slick-list .slick-track .slick-slide.logo-item img {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain; /* Opcional: Para asegurar que la imagen se ajuste sin recortarse */
+}
+
+.logos-slider {
+    position: relative; /* ¡CRUCIAL para que las flechas se posicionen respecto a este div! */
+    padding: 0 40px; /* Añade un padding a los lados para que las flechas tengan espacio dentro */
+    /* Asegúrate de que tu height: 15vh; (o el que uses) esté también aquí o en .logo-item */
+}
+
+/* Ajusta los estilos de las flechas de Slick */
+.slick-prev,
+.slick-next {
+    font-size: 0; /* Oculta el texto predeterminado si lo hay */
+    line-height: 0;
+    position: absolute;
+    top: 50%; /* Centra verticalmente */
+    transform: translateY(-50%); /* Ajuste fino para centrado exacto */
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    cursor: pointer;
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent;
+
+    /* Estilos específicos de las flechas */
+    &:before {
+        font-family: 'slick';
+        font-size: 30px; /* Tamaño del icono */
+        line-height: 1;
+        opacity: 0.75;
+        color: $color_azul_web; /* Color de las flechas */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+.slick-prev {
+    left: 10px; /* Ajusta la posición izquierda */
+    &:before {
+        content: '←'; /* O usa un icono de Bootstrap o Font Awesome */
+    }
+}
+
+.slick-next {
+    right: 10px; /* Ajusta la posición derecha */
+    &:before {
+        content: '→'; /* O usa un icono de Bootstrap o Font Awesome */
+    }
+}
+
+/**************************************************************************************
+QUIENES SOMOS
+***************************************************************************************/
+
+.quienes-somos-container {
+    background-color: white; /* Color de fondo similar a la imagen */
+    padding: 1em; /* Añade un padding general para evitar que el texto toque los bordes */
+}
+
+.quienes-somos-titulo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.quienes-somos-texto {
+    text-align: justify;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+.quienes-somos-titulo2{position: relative;bottom: 0%;}
+#carousel-trabajos-container{background-color: white;}
+#logos-div-principal{background-color: white;
+}
+#logosCarousel{
+    border: .3em solid rgba(0, 0, 0, 1);
+    border-radius: 0.5em;}
+#logosCarousel .carousel-item img {
+    height: 20vh; /* Establece la altura de la imagen al 20% de la altura de la ventana */
+    object-fit: contain; /* O 'cover' según prefieras */
+  }
+.linea-solida{
+    opacity: 0;
+    background-color: white;
+    height: 0.2em;
+    margin: 0;
+}
+
+/* Para el contenedor-quienes-somos */
+#contenedor-quienes-somos h1,
+#contenedor-quienes-somos p {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Para el carrusel de trabajos */
+/* NOTA: Animamos el h3, y luego el .carousel-inner que contiene las imágenes */
+#carousel-trabajos-container h3,
+#carousel-trabajos-container .carousel-inner { /* Esto oculta las imágenes del carrusel inicialmente */
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Para el contenedor de logos */
+/* NOTA: Animamos el h3 y el logos-slider (que contiene las imágenes de logo) */
+#logos-div-principal h3,
+#logos-div-principal .logos-slider {
+  opacity: 0;
+  visibility: hidden;
+}
+/**************************************************************************************
+CONTÁCTANOS
+***************************************************************************************/
+
+#contenedor-contactanos{background-color: white;}
+#baner-contactanos{padding: 0;
+height: 10vh;}
+#img-baner{object-fit: cover;}
+#img-contacto-recibido{height: 30vh;}
+#mensaje_enviado{
+    background-color: white;
+}
+/**************************************************************************************
+PRODUCTOS
+***************************************************************************************/
+
+#productos_container{background-color: white;}
+
+.card hr {
+    border: 0;
+    border-top: 1px solid #bbb;
+    margin: 0.2em 0;
+    height: 0;
+    background: none;
+}
+
+@media (max-width: 991.98px) { // menor a md
+    .card h5,
+    .card p:not(.precios) {
+        font-size: .8em !important;
+        margin: 0 !important;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1367px) { // md hasta lg inclusive
+    .card h5,
+    .card p:not(.precios) {
+        font-size: .9em !important;
+        margin: 0 !important;
+    }
+}
+.card-img-container {
+    width: 100%;
+    /* Quitamos height: 20vh; aquí, la altura la dará .img-aspect-ratio-box */
+    overflow: hidden; /* Esto es clave para el efecto de recorte durante el hover */
+    /* No display: flex; justify-content: center; align-items: center; aquí */
+    position: relative; /* Para el posicionamiento absoluto del aspect-ratio-box */
+}
+
+.img-aspect-ratio-box {
+    width: 100%;
+    padding-bottom: 75%; /* Esto crea una caja con una relación de aspecto 4:3 (altura 75% del ancho) */
+                          /* Ajusta este porcentaje (ej: 56.25% para 16:9, 100% para 1:1) 
+                          para que las imágenes se vean completas y bien en el estado normal */
+    position: relative; /* Para el posicionamiento absoluto de la imagen */
+    overflow: hidden; /* Esto contendrá la imagen y permitirá el zoom dentro */
+    
+    /* Esta transición es para que el escalado de GSAP sea suave, se aplicará a este div */
+    transition: transform 0.3s ease-out; 
+}
+
+.card-img-top { /* Esta es la clase de tu <img> */
+    position: absolute; /* Posicionamiento absoluto dentro de .img-aspect-ratio-box */
+    top: 0;
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    object-fit: contain; /* La imagen se ajusta sin recortarse dentro del aspect-ratio-box */
+    object-position: center; /* Centra la imagen si deja espacio vacío */
+    transition: none; /* Desactivar transiciones CSS propias de la imagen */
+}
+
+.precios{
+    font-size: 1.3em;
+    font-weight: bold;
+    color: $color_azul_web;
+}
+
+.card-body-ventas {
+    height: 30vh;
+    overflow: auto; /* Agrega barras de desplazamiento si es necesario */
+}
+
+@media (max-width: 1366.98px) {
+    .card-body-ventas {
+        height: 35vh;
+    }
+}
+.descripcion-producto {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Para el contenedor-quienes-somos */
+#contenedor-quienes-somos h1,
+#contenedor-quienes-somos p,
+#carousel-trabajos-container h3,
+#carousel-trabajos-container .carousel-inner { /* Esto oculta las imágenes del carrusel inicialmente */
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Para el contenedor de logos */
+#logos-div-principal h3,
+#logos-div-principal .logos-slider {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* --- NUEVAS REGLAS PARA EL CONTENEDOR DE CONTACTO --- */
+#contenedor-contactanos h1,
+#contenedor-contactanos h3,
+#contenedor-contactanos .mb-3, /* Oculta cada grupo de campo (label + input) */
+#contenedor-contactanos button[type="submit"] { /* Oculta el botón de enviar */
+  opacity: 0;
+  visibility: hidden;
+}
+
+#contenedor-usuarios{background-color: white;}
+#baner-contactanos{padding: 0;
+height: 10vh;}
+#img-baner{object-fit: cover;}
+#img-contacto-recibido{height: 30vh;}
+#mensaje_enviado{
+    background-color: white;
+}
