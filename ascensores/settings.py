@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-zo)tlo*ahi&d%0yssf!u2(^ufkxt6!$ad$)u@_38$8a@y@t)sb"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["nicosalvay.pythonanywhere.com"]
 
 
 # Application definition
@@ -87,12 +87,13 @@ WSGI_APPLICATION = "ascensores.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sermant',
-        'USER': 'admin',
-        'PASSWORD': 'admin',
-
+        'NAME': 'nicosalvay$default', # Ej: 'miusuario$mi_blog_db'
+        'USER': 'nicosalvay',
+        'PASSWORD': 'mysqladmin',
+        'HOST': 'nicosalvay.mysql.pythonanywhere-services.com', # Esto es estándar en PythonAnywhere
+        'PORT': '3306', # Puerto estándar de MySQL
     }
 }
 
