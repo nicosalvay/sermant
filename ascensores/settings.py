@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "restapi.apps.RestapiConfig",
+    "rest_framework",
+
     # Apps de terceros
     "captcha",
 

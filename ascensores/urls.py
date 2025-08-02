@@ -28,4 +28,5 @@ urlpatterns = [
     path("usuarios/", include('usuarios.urls')),
     path("captcha/", include('captcha.urls')),
     path("tienda/", include ('tienda.urls')),
+    path("api/v1.0/", include ('restapi.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
