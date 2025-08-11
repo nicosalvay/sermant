@@ -22,7 +22,8 @@ class Producto(models.Model):
         else:
             return format_html ('<span style="color:white;background-color:#3E92CC;padding:7px;">{}</span>',self.estado)
 
-
+    def get_absolute_url (self):
+        return f"/tienda/{self.pk}/ver/"
 class Categoria(models.Model):
     activo = "Activo"
     no_activo = "No activo"
