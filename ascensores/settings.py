@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "productos.apps.ProductosConfig",
     "usuarios.apps.UsuariosConfig",
     "contacto.apps.ContactoConfig",
+    "carro.apps.CarroConfig",
 ]
 
 MIDDLEWARE = [

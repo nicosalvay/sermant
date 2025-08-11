@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load carro_tags %}
+
+{% block contenedor %}
+<!--Página de ventas-->
+
+<div id="productos_container" class="container text-white">
+    <div class="container-fluid p-2">
+        <div class="row align-items-center">
+            <div class="col-12 text-center">
+                <h2>CARRITO DE COMPRAS</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    {% for producto in productos %}
+                        <div class="col-md-3 mb-4">
+                            <div class="card">
+                                <div class="card-img-container">
+                                    <a href="{% url 'ver_producto' producto.id %}">
+                                        <div class="img-aspect-ratio-box">
+                                            <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="card-body text-center card-body-ventas">
+                                    <hr>
+                                    <h5 class="card-title">{{ producto.producto }}</h5>
+                                    <p class="card-text descripcion-producto">{{ producto.descripcion }}</p>
+                                    <p class="card-text precios">
+                                        {% with total_por_producto=producto|precio_total_producto:request.session.carro %}
+                                            ${{ total_por_producto }}
+                                        {% endwith %}
+                                    </p>
+                                    <form action="{% url 'venta_productos' %}" method="post">{% csrf_token %}
+                                        <input hidden type="text" name="producto" value="prod_{{ producto.id }}"/>
+                                        <div class="input-group mb-3 justify-content-center">
+                                            <button class="btn btn-outline-secondary btn-decrement" type="button">-</button>
+                                            <input type="number" name="cantidad" class="form-control text-center cantidad-input" value="{{ producto|carro_cantida:request.session.carro }}" min="0" max="{{ producto.stock }}" style="max-width: 70px;">
+                                            <button class="btn btn-outline-secondary btn-increment" type="button">+</button>
+                                        </div>
+                                        <button type="button" class="float-right btn btn-danger boton_borrar">
+                                            <i class="bi bi-cart"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/carro.js' %}"></script>
+{%endblock %}
+
+

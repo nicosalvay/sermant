@@ -155,6 +155,8 @@ $(document).ready(function() {
 
         let cada_producto_id = $(this).closest('form').find('input[name="producto"]').val();
         let valor = $(this).closest('form').find('input[name="cantidad"]').val();
+        //Reseteo a 0 el value de input name=cantidad
+        $(this).closest('form').find('input[name="cantidad"]').val(0);
 
         console.log('Desde .agregar: ', cada_producto_id);
         console.log('Desde .agregar: ', valor);
@@ -226,6 +228,30 @@ $(document).ready(function() {
             console.warn("GSAP no está cargado. Las animaciones de zoom en imágenes de producto no funcionarán. Asegúrate de incluir la librería GSAP.");
         }
     }
+
+    /*-------------------------------------------------------------------------
+    --------------  IR AL CARRITO -------------------------------------
+    -------------------------------------------------------------------------*/
+    $('.boton_carrito').click(function() {
+        for(i = 0; i < localStorage.length; i++){
+            let clave_eliminar = localStorage.key(i);
+            if(!clave_eliminar.startsWith("prod_")){
+                localStorage.removeItem(clave_eliminar);
+            }
+        }
+        $.ajax({
+            url: "/tienda/crear_localstorage/",
+            data:{producto : JSON.stringify(localStorage)},
+            type: 'get',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                var urla = window.location.origin + "/carrito";    
+                window.location.href = urla;
+            },
+        });
+    });
+
 
     // Llama a la función de inicialización de los hover cuando la página carga por primera vez
     initializeProductImageHover();

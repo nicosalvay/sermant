@@ -24,7 +24,17 @@ body {background-color: $color_azul_web;margin: 0;}
         display: inline-block;
     }
 }
+/* Oculta las flechas para todos los inputs de tipo number en navegadores WebKit */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
+/* Oculta las flechas para todos los inputs de tipo number en Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
 
 /**************************************************************************************
 HOME
