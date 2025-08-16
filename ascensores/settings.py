@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     # Apps de terceros
     "captcha",
+    'ckeditor',
+    'ckeditor_uploader', # Permite subir archivos a CKEditor
+    'simple_history',
 
     # Mis Apps
     "bienvenida.apps.BienvenidaConfig",
@@ -64,6 +67,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = "ascensores.urls"
@@ -128,7 +132,7 @@ LANGUAGES = [
 
 LANGUAGE_CODE = 'es'  # Establece el idioma por defecto a español
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/Argentina/Buenos_Aires"
 
 USE_I18N = True
 USE_L10N = True
@@ -159,6 +163,10 @@ SITE_ID = 1 # SITE_ID = 1, estás diciendo que este es el sitio principal o pred
 
 LOGIN_REDIRECT_URL = "/" # Define a qué vista voy luego del logueo.
 LOGIN_URL = "django.contrib.auth.views.login" # Define la URL de la vista que maneja el proceso de inicio de sesión.
+
+# CKEDITOR
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 # Configuración del backend de correo electrónico para desarrollo
 # En desarrollo, puedes usar el backend de consola para ver los correos electrónicos en la terminal.
