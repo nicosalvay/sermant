@@ -123,3 +123,35 @@ $('.btn-decrement').click(function (event) {
     }
    Quitar(cada_producto_id, valor);
 });
+
+
+/*-------------------------------------------------------------------------
+--------- PASO 4 BORRAR PRODUCTO DEL CARRITO ------------------------------
+-------------------------------------------------------------------------*/
+
+$('.boton_borrar').click(function (event) {
+    "use strict";
+    let cada_producto_id = $(this).attr('id');
+    cada_producto_id = cada_producto_id.replace(/^el/, "prod_"); 
+    let i;
+
+    for(i = 0; i < localStorage.length; i++){
+        let clave_eliminar = localStorage.key(i);
+        if(!clave_eliminar.startsWith("prod_")){
+            localStorage.removeItem(clave_eliminar);
+        }
+    }
+    /* Remuevo el ítem seleccionado */
+    localStorage.removeItem(cada_producto_id);
+    $.ajax({
+        url: "/tienda/crear_localstorage/",
+        data:{producto : JSON.stringify(localStorage)},
+        type: 'get',
+        dataType: 'json',
+        contentType: 'application/json',
+        success: function (data) {
+        var urla = window.location.origin + "/carrito";    
+        window.location.href = urla;
+        },
+    });
+});

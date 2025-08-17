@@ -194,6 +194,7 @@ $(document).ready(function() {
                 console.log(json[0].cantida.toString());
                 localStorage.setItem(json[0].idproducto.toString(),
                 json[0].cantida.toString());
+                location.reload();
                 
             },
             error : function (xhr, errmsg, err) {

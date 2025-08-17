@@ -16,42 +16,55 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12">
-                <div class="row">
+            <div class="col-md-7">
+                <div class="row g-3">
                     {% for producto in productos %}
-                        <div class="col-md-3 mb-4">
-                            <div class="card">
-                                <div class="card-img-container">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-4"> 
                                     <a href="{% url 'ver_producto' producto.id %}">
-                                        <div class="img-aspect-ratio-box">
-                                            <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
-                                        </div>
+                                        <img src="{{ producto.imagen.url }}" class="img-fluid rounded-start" alt="{{ producto.nombre }}" style="object-fit: contain; height: 100%;">
                                     </a>
                                 </div>
-                                <div class="card-body text-center card-body-ventas">
-                                    <hr>
-                                    <h5 class="card-title">{{ producto.producto }}</h5>
-                                    <p class="card-text descripcion-producto">{{ producto.descripcion }}</p>
-                                    <p class="card-text precios">
-                                        {% with total_por_producto=producto|precio_total_producto:request.session.carro %}
-                                            ${{ total_por_producto }}
-                                        {% endwith %}
-                                    </p>
-                                    <form action="{% url 'venta_productos' %}" method="post">{% csrf_token %}
-                                        <input hidden type="text" name="producto" value="prod_{{ producto.id }}"/>
-                                        <div id="prod_{{producto.id}}" class="input-group mb-3 justify-content-center">
-                                            <button class="btn btn-outline-secondary btn-decrement" type="button">-</button>
-                                            <input type="number" name="cantidad" class="form-control text-center cantidad-input" value="{{ producto|carro_cantida:request.session.carro }}" min="0" max="{{ producto.stock }}" style="max-width: 70px;">
-                                            <button class="btn btn-outline-secondary btn-increment" type="button">+</button>
+                                <div class="col-md-8">
+                                    <div class="card-body text-center card-body-ventas d-flex flex-column justify-content-between">
+                                        <div>
+                                            <h5 class="card-title">{{ producto.producto }}</h5>
+                                            <p class="card-text descripcion-producto">{{ producto.descripcion }}</p>
+                                            <p class="card-text precios">
+                                                {% with total_por_producto=producto|precio_total_producto:request.session.carro %}
+                                                    ${{ total_por_producto }}
+                                                {% endwith %}
+                                            </p>
                                         </div>
-                                        <button type="button" class="float-right btn btn-danger boton_borrar">
-                                            <i class="bi bi-cart"></i>
-                                        </button>
-                                    </form>
+                                        <form action="{% url 'venta_productos' %}" method="post" class="mt-auto">{% csrf_token %}
+                                            <input hidden type="text" name="producto" value="prod_{{ producto.id }}"/>
+                                            <div id="prod_{{producto.id}}" class="input-group mb-3 justify-content-center">
+                                                <button class="btn btn-outline-secondary btn-decrement" type="button">-</button>
+                                                <input type="number" name="cantidad" class="form-control text-center cantidad-input" value="{{ producto|carro_cantida:request.session.carro }}" min="0" max="{{ producto.stock }}" style="max-width: 70px;">
+                                                <button class="btn btn-outline-secondary btn-increment" type="button">+</button>
+                                            </div>
+                                            <button type="button" id = "el{{producto.id}}" class="float-right btn btn-danger boton_borrar">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-5 p-2 rounded mb-3" style="background-color: grey;">
+                <div class="row">
+                    {% for producto in productos %}
+                        <p class="fw-bold">{{ producto.producto }}</p>
+                        <p>{{ producto|carro_cantida:request.session.carro }} x {{producto.precio}} = {{ producto|precio_total_producto:request.session.carro }}</p>
+                        <hr>
+                    {% endfor %}
+                    <p class="text-end fw-bold fs-5">
+                        Total Global: ${{ productos|carro_total_global:request.session.carro }}
+                    </p>
                 </div>
             </div>
         </div>
