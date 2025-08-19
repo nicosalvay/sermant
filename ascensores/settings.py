@@ -200,7 +200,9 @@ EMAIL_HOST_USER = 'apikey'
 
 DEFAULT_FROM_EMAIL = 'nicolassalvay.claro@gmail.com'
 
-EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY') 
+#EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY', '') 
+
 
 # Puedes añadir una comprobación simple para asegurarte de que la API Key está presente
 #if not EMAIL_HOST_PASSWORD and not DEBUG: # Solo comprueba en producción (cuando DEBUG es False)
