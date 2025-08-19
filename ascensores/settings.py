@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+from django.core.exceptions import ImproperlyConfigured
 from pathlib import Path
 import os
 
@@ -170,4 +170,34 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 
 # Configuración del backend de correo electrónico para desarrollo
 # En desarrollo, puedes usar el backend de consola para ver los correos electrónicos en la terminal.
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#########################
+#CONFIGURACIÓN DE E-MAIL:
+#########################
+
+# Backend de correo electrónico. Usar el SMTP de Django.
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Host de SendGrid
+EMAIL_HOST = 'smtp.sendgrid.net'
+
+# Puerto estándar para TLS
+EMAIL_PORT = 587
+
+# Usar TLS (Transport Layer Security)
+EMAIL_USE_TLS = True
+
+# No usar SSL si ya usas TLS en el puerto 587
+EMAIL_USE_SSL = False 
+
+# Nombre de usuario para la API Key de SendGrid (siempre es 'apikey')
+EMAIL_HOST_USER = 'apikey'
+
+DEFAULT_FROM_EMAIL = 'nicolassalvay.claro@gmail.com'
+
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY') 
+
+# Puedes añadir una comprobación simple para asegurarte de que la API Key está presente
+if not EMAIL_HOST_PASSWORD and not DEBUG: # Solo comprueba en producción (cuando DEBUG es False)
+    raise ImproperlyConfigured("SENDGRID_API_KEY environment variable not set.")
