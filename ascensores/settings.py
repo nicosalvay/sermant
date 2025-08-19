@@ -201,5 +201,4 @@ EMAIL_HOST_USER = 'apikey'
 DEFAULT_FROM_EMAIL = 'nicolassalvay.claro@gmail.com'
 
 #EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
-EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY', '') 
-
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY', '')
