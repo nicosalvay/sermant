@@ -14,58 +14,6 @@ $(document).ready(function() {
         }
     });
     
-    // --- Función para actualizar la interfaz con los productos filtrados ---
-    function updateProductList(productos) {
-        const $productGrid = $('.col-md-9 > .row'); 
-        $productGrid.empty(); 
-
-        if (productos.length === 0) {
-            $productGrid.append('<div class="col-12"><p class="text-white text-center">No se encontraron productos que coincidan con tu búsqueda.</p></div>');
-            return;
-        } 
-        
-        productos.forEach(function(producto) {
-            const detalleUrl = `/tienda/${producto.id}/ver/`;
-            
-            const productCard = `
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="card-img-container">
-                            <a href="${detalleUrl}">
-                                <div class="img-aspect-ratio-box">
-                                    <img src="${producto.imagen_url}" class="card-img-top" alt="${producto.nombre}">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="card-body text-center card-body-ventas">
-                            <hr>
-                            <h5 class="card-title">${producto.producto}</h5>
-                            <p class="card-text descripcion-producto">${producto.descripcion}</p>
-                            <p class="card-text precios">$${producto.precio}</p>
-                            
-                            <form class="add-to-cart-form" action="{% url 'venta_productos' %}" method="post">
-                                <input type="hidden" name="csrfmiddlewaretoken" value="${csrftoken}">
-                                <input hidden type="text" name="producto" value="prod_${producto.id}"/>
-                                <div class="input-group mb-3 justify-content-center">
-                                    <button class="btn btn-outline-secondary btn-decrement" type="button">-</button>
-                                    <input type="number" name="cantidad" class="form-control text-center cantidad-input" value="0" min="0" max="${producto.stock}" style="max-width: 70px;">
-                                    <button class="btn btn-outline-secondary btn-increment" type="button">+</button>
-                                </div>
-                                <button type="button" class="float-right btn btn-primary add-to-cart-button">
-                                    <i class="bi bi-cart"></i> Comprar
-                                </button>
-                                
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            `;
-            $productGrid.append(productCard);
-        });
-    }
-
-    // Vuelve a inicializar los hover después de cargar nuevos productos
-    initializeProductImageHover(); 
 
     // Manejar el envío del formulario de búsqueda con AJAX
     $('#search-form').submit(function(e) {
@@ -113,20 +61,37 @@ $(document).ready(function() {
                 console.log("Enviando petición de filtrado (AJAX) con datos manuales...");
                 // Ver después de poner un spinner aquí
             },
-            success: function(response) {
-                console.log("Productos filtrados recibidos (AJAX):", response.productos);
-                updateProductList(response.productos);
-                // Actualizar la URL del navegador sin recargar la página (para que sea compartible)
-                history.pushState(null, '', fullUrl); 
+            success: function(response) { // <--- COMIENZA AQUI EL REEMPLAZO
+                console.log("Respuesta AJAX recibida:", response);
+                const $productGrid = $('.col-md-9 > .row');
+                $productGrid.empty(); // Limpia la cuadrícula actual
+
+                // ¡AHORA! Inserta el HTML directamente de la respuesta del servidor
+                if (response.html) { //
+                    $productGrid.append(response.html); // Inserta el HTML renderizado por Django
+                } else {
+                    $productGrid.append('<div class="col-12"><p class="text-white text-center">No se encontraron productos que coincidan con tu búsqueda.</p></div>');
+                }
+
+                history.pushState(null, '', fullUrl);
 
                 // Mantener los checkboxes marcados después del AJAX
-  
                 $('.categoria-checkbox').prop('checked', false); // Desmarcar todos primero
-                params.forEach(p => {
-                    if (p.name === 'categorias') {
+                params.forEach(p => { //
+                    if (p.name === 'categorias') { //
                         $(`#categoria${p.value}`).prop('checked', true); // Marcar los que estaban en la petición
                     }
                 });
+
+                // ESTO ES CRUCIAL: Vuelve a inicializar los hover y cualquier otra lógica JS para los NUEVOS elementos
+                // La función initializeProductImageHover() deberá estar disponible globalmente o al menos en el mismo scope.
+                initializeProductImageHover(); //
+
+                // Si tienes event listeners para los botones +/- o "Comprar" que NO usan delegación
+                // (es decir, NO usan $('.col-md-9').on('click', '.btn-increment', ...)),
+                // entonces también necesitarías re-aplicarlos aquí.
+                // Afortunadamente, tu código ya usa delegación para estos botones (`.col-md-9').on(...)`),
+                // lo cual significa que no necesitas re-inicializarlos; ¡ya funcionan para los elementos nuevos!
             },
             error: function(xhr, status, error) {
                 console.error("Error al filtrar productos (AJAX):", status, error, xhr.responseText);
@@ -190,6 +155,8 @@ $(document).ready(function() {
 
         let cada_producto_id = $(this).closest('form').find('input[name="producto"]').val();
         let valor = $(this).closest('form').find('input[name="cantidad"]').val();
+        //Reseteo a 0 el value de input name=cantidad
+        $(this).closest('form').find('input[name="cantidad"]').val(0);
 
         console.log('Desde .agregar: ', cada_producto_id);
         console.log('Desde .agregar: ', valor);
@@ -227,6 +194,7 @@ $(document).ready(function() {
                 console.log(json[0].cantida.toString());
                 localStorage.setItem(json[0].idproducto.toString(),
                 json[0].cantida.toString());
+                location.reload();
                 
             },
             error : function (xhr, errmsg, err) {
@@ -261,6 +229,30 @@ $(document).ready(function() {
             console.warn("GSAP no está cargado. Las animaciones de zoom en imágenes de producto no funcionarán. Asegúrate de incluir la librería GSAP.");
         }
     }
+
+    /*-------------------------------------------------------------------------
+    --------------  IR AL CARRITO -------------------------------------
+    -------------------------------------------------------------------------*/
+    $('.boton_carrito').click(function() {
+        for(i = 0; i < localStorage.length; i++){
+            let clave_eliminar = localStorage.key(i);
+            if(!clave_eliminar.startsWith("prod_")){
+                localStorage.removeItem(clave_eliminar);
+            }
+        }
+        $.ajax({
+            url: "/tienda/crear_localstorage/",
+            data:{producto : JSON.stringify(localStorage)},
+            type: 'get',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                var urla = window.location.origin + "/carrito";    
+                window.location.href = urla;
+            },
+        });
+    });
+
 
     // Llama a la función de inicialización de los hover cuando la página carga por primera vez
     initializeProductImageHover();

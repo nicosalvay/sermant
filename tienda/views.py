@@ -1,8 +1,9 @@
 from django.shortcuts import render
+from django.template.loader import render_to_string
 from tienda.forms import CargaProducto, ImagenesProductoFormSet
 from productos.models import Producto, Categoria, ImgProducto
 from django.shortcuts import redirect
-from django.http import Http404, JsonResponse
+from django.http import Http404, JsonResponse, HttpResponse
 from django.views.generic import View
 from productos.forms import SearchProductoForm
 
@@ -70,85 +71,87 @@ class VentaProductos(View):
     
     def get(self, request):
         params={}
-        search_form = SearchProductoForm(request.GET)
-        productos = Producto.objects.all()
-        categorias_seleccionadas_ids_str = request.GET.getlist('categorias')
+        search_form = SearchProductoForm(request.GET) #
+        productos = Producto.objects.all() #
+        categorias_seleccionadas_ids_str = request.GET.getlist('categorias') #
 
-        query = request.GET.get('querycom', '').strip()
-        if query:
-            productos = productos.filter(producto__icontains=query)
-        
-        # 2. Filtro por categorías seleccionadas (usando la lista de strings)
-        if categorias_seleccionadas_ids_str: # Ahora usamos la versión string para el filtro
-            try:
-                # Convertir los IDs de string a entero para la consulta de la base de datos
-                categorias_seleccionadas_ids_int = [int(cat_id) for cat_id in categorias_seleccionadas_ids_str]
-                productos = productos.filter(categoria__id__in=categorias_seleccionadas_ids_int)
-            except ValueError:
-                print("Advertencia: Se recibió un ID de categoría no válido.")
-                pass 
-        
-        #Filtro por rango de precios
-        precio_desde = request.GET.get('precioDesde')
-        precio_hasta = request.GET.get('precioHasta')
-        if precio_desde:
-            try:
-                productos = productos.filter(precio__gte=float(precio_desde))
-            except ValueError:
-                pass
-        if precio_hasta:
-            try:
-                productos = productos.filter(precio__lte=float(precio_hasta))
-            except ValueError:
-                pass
-        try:
-            #search = SearchProductoForm()
-            #productos = Producto.objects.all()
-            categorias = Categoria.objects.all()
-            imagenes = ImgProducto.objects.all()
-        except Exception as e: 
-            print(f"Error al obtener categorías/imágenes: {e}")
-            raise Http404("No se pudieron cargar recursos esenciales.")
-        
+        query = request.GET.get('querycom', '').strip() #
+        if query: #
+            from django.db.models import Q # Importa Q aquí si no lo hiciste arriba
+            productos = productos.filter(
+                Q(producto__icontains=query) | Q(descripcion__icontains=query) # Asumo que también filtras por descripción
+            ).distinct()
+
+        if categorias_seleccionadas_ids_str: #
+            try: #
+                categorias_seleccionadas_ids_int = [int(cat_id) for cat_id in categorias_seleccionadas_ids_str] #
+                productos = productos.filter(categoria__id__in=categorias_seleccionadas_ids_int).distinct() #
+            except ValueError: #
+                print("Advertencia: Se recibió un ID de categoría no válido.") #
+                pass #
+
+        precio_desde = request.GET.get('precioDesde') #
+        precio_hasta = request.GET.get('precioHasta') #
+        if precio_desde: #
+            try: #
+                productos = productos.filter(precio__gte=float(precio_desde)) #
+            except ValueError: #
+                pass #
+        if precio_hasta: #
+            try: #
+                productos = productos.filter(precio__lte=float(precio_hasta)) #
+            except ValueError: #
+                pass #
+
+        # Re-obtener categorías para el sidebar, etc.
+        try: #
+            categorias = Categoria.objects.all() #
+            # imagenes = ImgProducto.objects.all() # No necesitas todas las imágenes aquí si las obtienes por producto
+        except Exception as e: #
+            print(f"Error al obtener categorías: {e}") #
+            raise Http404("No se pudieron cargar recursos esenciales.") #
+
         # --- Determinar si la petición es AJAX o una carga de página completa ---
         if self.is_ajax(request):
-            # Es una petición AJAX, solo devuelve los datos de los productos
-            productos_data = []
-            for prod in productos:
-                productos_data.append({
-                    'id': prod.id,
-                    'producto': prod.producto,
-                    'descripcion': prod.descripcion,
-                    'precio': str(prod.precio), # Decimales a string para JSON
-                    'stock': prod.stock,
-                    'imagen_url': prod.imagen.url if prod.imagen else '',
-                    # 'detalle_url': reverse('nombre_de_tu_url_de_detalle_producto', args=[prod.id])
-                })
-            return JsonResponse({'productos': productos_data})
+            # Es una petición AJAX, devuelve el HTML renderizado de los productos
+            contexto_parcial = {
+                'productos': productos,
+                # Puedes pasar otras variables si tu parcial las necesita,
+                # por ejemplo, el `request` si tienes URLs dinámicas o CSRF token dentro del parcial.
+                # El `request` se pasa a `render_to_string` con `request=request`
+            }
+
+            html_productos = render_to_string(
+                'tienda/_product_cards.html', # <--- Ruta a tu nuevo archivo parcial
+                contexto_parcial,
+                request=request # Importante para que {% csrf_token %} y {% url %} funcionen en el parcial
+            )
+
+            if not productos.exists(): # Si no hay productos, mostrar un mensaje
+                 html_productos = '<div class="col-12"><p class="text-white text-center">No se encontraron productos que coincidan con tu búsqueda.</p></div>'
+
+            return JsonResponse({'html': html_productos}) # Envía el HTML como parte de una respuesta JSON
         else:
             # Es una carga de página normal, renderiza la plantilla HTML completa
             params = {
                 'nombre_sitio': 'Venta de Productos',
-                'productos': productos, # Ahora 'productos' contendrá los productos filtrados por texto y/o categoría
+                'productos': productos, # 'productos' ya viene filtrado aquí
                 'categorias': categorias, # Pasa todas las categorías para los checkboxes
-                'imagenes': imagenes,
+                # 'imagenes': imagenes, # Ya no necesitas pasar todas las imágenes aquí si se cargan por producto
                 'search': search_form, # Pasa el formulario para que el input mantenga el valor
-                'selected_category_ids': categorias_seleccionadas_ids_str, 
-
+                'selected_category_ids': categorias_seleccionadas_ids_str, # Para mantener los checkboxes marcados
             }
 
         # ###############################################################
-        # INICIALIZAR LA VARIABLE DE SESSION CARRO
+        # INICIALIZAR LA VARIABLE DE SESSION CARRO (Mantenemos esta lógica)
         # ###############################################################
         try:
-            #request.session es un diccionario que almacena datos de sesión
-            # y se utiliza para almacenar información específica del usuario
             request.session["carro"]
         except:
             request.session["carro"] = {}
 
         return render(request, self.template, params)
-
+    
     def post(self, request):
         params = {}
         producto=request.POST.get("producto")

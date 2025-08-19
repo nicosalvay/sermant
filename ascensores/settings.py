@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+from django.core.exceptions import ImproperlyConfigured
 from pathlib import Path
 import os
 
@@ -41,14 +41,21 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "restapi.apps.RestapiConfig",
+    "rest_framework",
+    'django.contrib.sitemaps',
     # Apps de terceros
     "captcha",
+    'ckeditor',
+    'ckeditor_uploader', # Permite subir archivos a CKEditor
+    'simple_history',
 
     # Mis Apps
     "bienvenida.apps.BienvenidaConfig",
     "productos.apps.ProductosConfig",
     "usuarios.apps.UsuariosConfig",
     "contacto.apps.ContactoConfig",
+    "carro.apps.CarroConfig",
 ]
 
 MIDDLEWARE = [
@@ -60,6 +67,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'simple_history.middleware.HistoryRequestMiddleware',
 ]
 
 ROOT_URLCONF = "ascensores.urls"
@@ -128,7 +136,7 @@ LANGUAGES = [
 
 LANGUAGE_CODE = 'es'  # Establece el idioma por defecto a español
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/Argentina/Buenos_Aires"
 
 USE_I18N = True
 USE_L10N = True
@@ -160,6 +168,40 @@ SITE_ID = 1 # SITE_ID = 1, estás diciendo que este es el sitio principal o pred
 LOGIN_REDIRECT_URL = "/" # Define a qué vista voy luego del logueo.
 LOGIN_URL = "django.contrib.auth.views.login" # Define la URL de la vista que maneja el proceso de inicio de sesión.
 
+# CKEDITOR
+CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
 # Configuración del backend de correo electrónico para desarrollo
 # En desarrollo, puedes usar el backend de consola para ver los correos electrónicos en la terminal.
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#########################
+#CONFIGURACIÓN DE E-MAIL:
+#########################
+
+# Backend de correo electrónico. Usar el SMTP de Django.
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# Host de SendGrid
+EMAIL_HOST = 'smtp.sendgrid.net'
+
+# Puerto estándar para TLS
+EMAIL_PORT = 587
+
+# Usar TLS (Transport Layer Security)
+EMAIL_USE_TLS = True
+
+# No usar SSL si ya usas TLS en el puerto 587
+EMAIL_USE_SSL = False 
+
+# Nombre de usuario para la API Key de SendGrid (siempre es 'apikey')
+EMAIL_HOST_USER = 'apikey'
+
+DEFAULT_FROM_EMAIL = 'nicolassalvay.claro@gmail.com'
+
+EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY') 
+
+# Puedes añadir una comprobación simple para asegurarte de que la API Key está presente
+if not EMAIL_HOST_PASSWORD and not DEBUG: # Solo comprueba en producción (cuando DEBUG es False)
+    raise ImproperlyConfigured("SENDGRID_API_KEY environment variable not set.")

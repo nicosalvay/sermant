@@ -19,6 +19,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from tienda.sitemap import TiendaViewSitemap
+from productos.sitemap import ProductoSitemap
+sitemaps = {
+    'tienda': TiendaViewSitemap,
+    'productos': ProductoSitemap,
+}
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -28,4 +35,8 @@ urlpatterns = [
     path("usuarios/", include('usuarios.urls')),
     path("captcha/", include('captcha.urls')),
     path("tienda/", include ('tienda.urls')),
+    path("api/v1.0/", include ('restapi.urls')),
+    path("carrito/", include ('carro.urls')),
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

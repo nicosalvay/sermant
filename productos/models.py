@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.html import format_html
-
+from simple_history.models import HistoricalRecords
 # Create your models here.
 
 class Producto(models.Model):
@@ -12,7 +12,7 @@ class Producto(models.Model):
     estado = models.CharField(max_length=10, choices=[('Activo', 'Activo'), ('No activo', 'No activo')])
     imagen = models.ImageField(upload_to="productos/%Y/%m/%d", blank=True, null=True)
     categoria = models.ForeignKey('Categoria', on_delete=models.CASCADE, related_name="productos")
-
+    history= HistoricalRecords() # Permite el seguimiento de cambios en el modelo Producto
     def __str__ (self, ):
         return self.producto
 
@@ -22,7 +22,8 @@ class Producto(models.Model):
         else:
             return format_html ('<span style="color:white;background-color:#3E92CC;padding:7px;">{}</span>',self.estado)
 
-
+    def get_absolute_url (self):
+        return f"/tienda/{self.pk}/ver/"
 class Categoria(models.Model):
     activo = "Activo"
     no_activo = "No activo"
