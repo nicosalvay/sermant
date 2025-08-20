@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader', # Permite subir archivos a CKEditor
     'simple_history',
+    'sendgrid_backend',
 
     # Mis Apps
     "bienvenida.apps.BienvenidaConfig",
@@ -181,19 +182,19 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 #########################
 
 # Backend de correo electrónico. Usar el SMTP de Django.
-EMAIL_BACKEND = 'ascensores.utils.sendgrid_backend.SendGridEmailBackend'
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 
 # Host de SendGrid
-EMAIL_HOST = 'smtp.sendgrid.net'
+#EMAIL_HOST = 'smtp.sendgrid.net'
 
 # Puerto estándar para TLS
-EMAIL_PORT = 587
+#EMAIL_PORT = 587
 
 # Usar TLS (Transport Layer Security)
-EMAIL_USE_TLS = True
+#EMAIL_USE_TLS = True
 
 # No usar SSL si ya usas TLS en el puerto 587
-EMAIL_USE_SSL = False 
+#EMAIL_USE_SSL = False 
 
 # Nombre de usuario para la API Key de SendGrid (siempre es 'apikey')
 EMAIL_HOST_USER = 'apikey'
