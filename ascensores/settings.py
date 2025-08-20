@@ -197,7 +197,7 @@ EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 #EMAIL_USE_SSL = False 
 
 # Nombre de usuario para la API Key de SendGrid (siempre es 'apikey')
-EMAIL_HOST_USER = 'apikey'
+#EMAIL_HOST_USER = 'apikey'
 
 DEFAULT_FROM_EMAIL = 'nicolassalvay.claro@gmail.com'
 
