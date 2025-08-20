@@ -181,7 +181,7 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 #########################
 
 # Backend de correo electrónico. Usar el SMTP de Django.
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'ascensores.utils.sendgrid_backend.SendGridEmailBackend'
 
 # Host de SendGrid
 EMAIL_HOST = 'smtp.sendgrid.net'
