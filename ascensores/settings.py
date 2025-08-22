@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader', # Permite subir archivos a CKEditor
     'simple_history',
+    'sendgrid_backend',
 
     # Mis Apps
     "bienvenida.apps.BienvenidaConfig",
@@ -168,36 +169,17 @@ LOGIN_URL = "django.contrib.auth.views.login" # Define la URL de la vista que ma
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
-# Configuración del backend de correo electrónico para desarrollo
-# En desarrollo, puedes usar el backend de consola para ver los correos electrónicos en la terminal.
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 #########################
 #CONFIGURACIÓN DE E-MAIL:
 #########################
 
 # Backend de correo electrónico. Usar el SMTP de Django.
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-# Host de SendGrid
-EMAIL_HOST = 'smtp.sendgrid.net'
-
-# Puerto estándar para TLS
-EMAIL_PORT = 587
-
-# Usar TLS (Transport Layer Security)
-EMAIL_USE_TLS = True
-
-# No usar SSL si ya usas TLS en el puerto 587
-EMAIL_USE_SSL = False 
-
-# Nombre de usuario para la API Key de SendGrid (siempre es 'apikey')
-EMAIL_HOST_USER = 'apikey'
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 
 DEFAULT_FROM_EMAIL = 'nicolassalvay.claro@gmail.com'
 
-EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY') 
+#EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
 
-# Puedes añadir una comprobación simple para asegurarte de que la API Key está presente
-if not EMAIL_HOST_PASSWORD and not DEBUG: # Solo comprueba en producción (cuando DEBUG es False)
-    raise ImproperlyConfigured("SENDGRID_API_KEY environment variable not set.")
+if not SENDGRID_API_KEY:
+    raise ImproperlyConfigured("SENDGRID_API_KEY no se encontró en el entorno.")
