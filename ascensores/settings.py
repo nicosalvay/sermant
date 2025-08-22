@@ -173,31 +173,12 @@ LOGIN_URL = "django.contrib.auth.views.login" # Define la URL de la vista que ma
 CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
-# Configuración del backend de correo electrónico para desarrollo
-# En desarrollo, puedes usar el backend de consola para ver los correos electrónicos en la terminal.
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 #########################
 #CONFIGURACIÓN DE E-MAIL:
 #########################
 
 # Backend de correo electrónico. Usar el SMTP de Django.
 EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-
-# Host de SendGrid
-#EMAIL_HOST = 'smtp.sendgrid.net'
-
-# Puerto estándar para TLS
-#EMAIL_PORT = 587
-
-# Usar TLS (Transport Layer Security)
-#EMAIL_USE_TLS = True
-
-# No usar SSL si ya usas TLS en el puerto 587
-#EMAIL_USE_SSL = False 
-
-# Nombre de usuario para la API Key de SendGrid (siempre es 'apikey')
-#EMAIL_HOST_USER = 'apikey'
 
 DEFAULT_FROM_EMAIL = 'nicolassalvay.claro@gmail.com'
 
