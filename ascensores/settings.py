@@ -20,6 +20,24 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/django_error.log'),
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -30,7 +48,11 @@ SECRET_KEY = "django-insecure-zo)tlo*ahi&d%0yssf!u2(^ufkxt6!$ad$)u@_38$8a@y@t)sb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', 'False').lower() in ('true', '1', 'yes')
 
-ALLOWED_HOSTS = []
+if DEBUG:
+    ALLOWED_HOSTS = []
+else:
+    ALLOWED_HOSTS = ["nicosalvay.pythonanywhere.com"]
+
 
 
 # Application definition
@@ -99,12 +121,24 @@ WSGI_APPLICATION = "ascensores.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+if DEBUG:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'nicosalvay$default', # Ej: 'miusuario$mi_blog_db'
+            'USER': 'nicosalvay',
+            'PASSWORD': 'mysqladmin',
+            'HOST': 'nicosalvay.mysql.pythonanywhere-services.com', # Esto es estándar en PythonAnywhere
+            'PORT': '3306', # Puerto estándar de MySQL
+        }
+    }
 
 
 # Password validation
