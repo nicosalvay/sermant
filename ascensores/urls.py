@@ -22,7 +22,10 @@ from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from tienda.sitemap import TiendaViewSitemap
 from productos.sitemap import ProductoSitemap
+from bienvenida.views import robots_view
+from bienvenida.sitemap import BienvenidaViewSitemap
 sitemaps = {
+    'bienvenida': BienvenidaViewSitemap,
     'tienda': TiendaViewSitemap,
     'productos': ProductoSitemap,
 }
@@ -39,4 +42,5 @@ urlpatterns = [
     path("carrito/", include ('carro.urls')),
     path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap"),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('robots.txt', robots_view, name='robots')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

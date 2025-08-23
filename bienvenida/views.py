@@ -12,7 +12,13 @@ class Index (FormView):
     form_class = ConsultaForm
     #success_url contiene la URL a la que se redirigirá al usuario después de que el formulario se haya enviado correctamente.
     success_url = 'mensaje_enviado'
-    #si el formulario no es válido, se redirige a la misma página.
+
+    def get_context_data(self, **kwargs):
+        params = super().get_context_data(**kwargs)
+        params['palabras_claves'] = 'ascensores, mantenimiento, Córdoba, Ser-Mant'
+        params['descripcion'] = 'Empresa líder en instalación y mantenimiento de ascensores en Córdoba.'
+        return params
+
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data(form=form))
 
@@ -26,8 +32,11 @@ class MensajeEnviado(View):
     template_name = 'bienvenida/mensaje_enviado.html'
 
     def get(self, request):
-        params = {}
-        params['mensaje'] = 'Su mensaje ha sido enviado correctamente.'
+        params = {
+            'mensaje': 'Su mensaje ha sido enviado correctamente.',
+            'palabras_claves': 'contacto, mensaje, Ser-Mant',
+            'descripcion': 'Mensaje de contacto enviado correctamente en Ser-Mant.'
+        }
         return render(request, self.template_name, params)
 
 def venta (request):
@@ -40,6 +49,11 @@ def venta (request):
         'nombre_sitio': 'Venta de Productos',
         'productos': productos,
         'categorias': categorias,
+        'palabras_claves': 'productos, venta, ascensores, Ser-Mant',
+        'descripcion': 'Catálogo de productos disponibles para la venta en Ser-Mant.'
     }
 
     return render (request, 'bienvenida/venta_productos.html',params)
+
+def robots_view(request):
+    return render(request, 'robots.txt', content_type='text/plain')

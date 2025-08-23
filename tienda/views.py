@@ -9,6 +9,9 @@ from productos.forms import SearchProductoForm
 
 def cargar_producto(request):
     params={}
+    # Metadatos para SEO
+    params['palabras_claves'] = 'cargar producto, tienda, Ser-Mant'
+    params['descripcion'] = 'Formulario para cargar nuevos productos en la tienda Ser-Mant.'
 
     if request.method == 'POST':
         # Si el método es POST, se procesa el formulario
@@ -116,9 +119,6 @@ class VentaProductos(View):
             # Es una petición AJAX, devuelve el HTML renderizado de los productos
             contexto_parcial = {
                 'productos': productos,
-                # Puedes pasar otras variables si tu parcial las necesita,
-                # por ejemplo, el `request` si tienes URLs dinámicas o CSRF token dentro del parcial.
-                # El `request` se pasa a `render_to_string` con `request=request`
             }
 
             html_productos = render_to_string(
@@ -140,6 +140,9 @@ class VentaProductos(View):
                 # 'imagenes': imagenes, # Ya no necesitas pasar todas las imágenes aquí si se cargan por producto
                 'search': search_form, # Pasa el formulario para que el input mantenga el valor
                 'selected_category_ids': categorias_seleccionadas_ids_str, # Para mantener los checkboxes marcados
+                # Metadatos para SEO
+                'palabras_claves': 'venta, productos, tienda, Ser-Mant',
+                'descripcion': 'Catálogo de productos disponibles para la venta en Ser-Mant.'
             }
 
         # ###############################################################
@@ -178,6 +181,9 @@ class VentaProductos(View):
 def ver_imagen(request, producto_id):
     # Se obtiene el producto por su ID 
     params={}
+    # Metadatos para SEO
+    params['palabras_claves'] = 'ver imagen, producto, tienda, Ser-Mant'
+    params['descripcion'] = 'Visualiza las imágenes asociadas a un producto en la tienda Ser-Mant.'
     try:
         # Se busca el producto en la base de datos por su ID
         # Se utiliza el método get() para obtener un objeto específico de la clase Producto

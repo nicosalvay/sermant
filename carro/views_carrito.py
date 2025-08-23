@@ -49,4 +49,6 @@ class Carrito(View):
         # ###########################################################
         current_site = Site.objects.get_current()
         params["dominio_actual"] = current_site.domain
+        params["palabras_claves"] = "carrito, productos, compra, Ser-Mant"
+        params["descripcion"] = "Visualiza y gestiona los productos en tu carrito de compras en Ser-Mant."
         return render(request, self.template, params)

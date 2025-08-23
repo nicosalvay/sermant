@@ -1,19 +1,22 @@
 {% load static %}
 {% for producto in productos %}
     <div class="col-md-4 mb-4">
-        <div class="card">
+        <div class="card" itemscope itemtype="https://schema.org/Product">
             <div class="card-img-container">
                 <a href="{% url 'ver_producto' producto.id %}">
                     <div class="img-aspect-ratio-box">
-                        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
+                        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}" itemprop="image">
                     </div>
                 </a>
             </div>
             <div class="card-body text-center card-body-ventas">
                 <hr>
-                <h5 class="card-title">{{ producto.producto }}</h5>
-                <p class="card-text descripcion-producto">{{ producto.descripcion }}</p>
-                <p class="card-text precios">${{ producto.precio }}</p>
+                <h5 class="card-title" itemprop="name">{{ producto.producto }}</h5>
+                <p class="card-text descripcion-producto" itemprop="description">{{ producto.descripcion }}</p>
+                <p class="card-text precios" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+                    <meta itemprop="priceCurrency" content="ARS" />
+                    $<span itemprop="price">{{ producto.precio }}</span>
+                </p>
                 <form action="{% url 'venta_productos' %}" method="post">{% csrf_token %}
                     <input hidden type="text" name="producto" value="prod_{{ producto.id }}"/>
                     <div class="input-group mb-3 justify-content-center">

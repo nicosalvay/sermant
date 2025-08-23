@@ -2,6 +2,7 @@ from django.db import models
 import datetime
 from django.utils.html import format_html
 from datetime import datetime
+from django.core.mail import send_mail
 
 # Create your models here.
 class Consulta(models.Model):
@@ -45,7 +46,14 @@ class Respuesta(models.Model):
         contacto_cambio_estado = Consulta.objects.get(id=self.consulta.id)
         contacto_cambio_estado.estado_respuesta = 'Contestada'
         contacto_cambio_estado.save()
-        # AGREGAR LÓGICA DE ENVIO DE MAIL
+        # Enviar email al usuario que hizo la consulta
+        send_mail(
+            subject='Respuesta a tu consulta en Ser-Mant',
+            message=self.respuesta,
+            from_email=None,  # Usa el DEFAULT_FROM_EMAIL de settings.py
+            recipient_list=[contacto_cambio_estado.email],
+            fail_silently=False,
+        )
         
     #save es un método que se llama cuando se guarda el objeto en la base de datos. Es un método de la clase Model.
     def save(self, *args, **kwargs):
