@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from django.core.exceptions import ImproperlyConfigured
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+# Carga las variables del archivo .env
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-zo)tlo*ahi&d%0yssf!u2(^ufkxt6!$ad$)u@_38$8a@y@t)sb"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False').lower() in ('true', '1', 'yes')
 
 ALLOWED_HOSTS = []
 
@@ -173,13 +177,16 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 #CONFIGURACIÓN DE E-MAIL:
 #########################
 
-# Backend de correo electrónico. Usar el SMTP de Django.
-EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+# Configuración de email según entorno
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 
 DEFAULT_FROM_EMAIL = 'nicolassalvay.claro@gmail.com'
 
 #EMAIL_HOST_PASSWORD = os.environ.get('SENDGRID_API_KEY')
 SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
 
-if not SENDGRID_API_KEY:
+if not SENDGRID_API_KEY and EMAIL_BACKEND == "sendgrid_backend.SendgridBackend":
     raise ImproperlyConfigured("SENDGRID_API_KEY no se encontró en el entorno.")
