@@ -27,10 +27,12 @@ $(document).ready(function() {
         } else {
             console.warn("No se encontraron elementos <a> dentro de '.mi_navbar'.");
         }
+
     /*-------------------------------------------------------------------------
     --------------  IR AL CARRITO -------------------------------------
     -------------------------------------------------------------------------*/
     $('.boton_carrito').click(function() {
+        event.preventDefault(); // Evita que la página salte
         for(i = 0; i < localStorage.length; i++){
             let clave_eliminar = localStorage.key(i);
             if(!clave_eliminar.startsWith("prod_")){
@@ -48,7 +50,7 @@ $(document).ready(function() {
                 window.location.href = urla;
             },
         });
-    });
+    });        
 
     } else {
         // Mensaje de error más específico
