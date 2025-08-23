@@ -27,7 +27,28 @@ $(document).ready(function() {
         } else {
             console.warn("No se encontraron elementos <a> dentro de '.mi_navbar'.");
         }
-
+    /*-------------------------------------------------------------------------
+    --------------  IR AL CARRITO -------------------------------------
+    -------------------------------------------------------------------------*/
+    $('.boton_carrito').click(function() {
+        for(i = 0; i < localStorage.length; i++){
+            let clave_eliminar = localStorage.key(i);
+            if(!clave_eliminar.startsWith("prod_")){
+                localStorage.removeItem(clave_eliminar);
+            }
+        }
+        $.ajax({
+            url: "/tienda/crear_localstorage/",
+            data:{producto : JSON.stringify(localStorage)},
+            type: 'get',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                var urla = window.location.origin + "/carrito";    
+                window.location.href = urla;
+            },
+        });
+    });
 
     } else {
         // Mensaje de error más específico
