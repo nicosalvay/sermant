@@ -1,5 +1,4 @@
 User-agent: *
 Disallow: /
-Allow: /
 
 Sitemap: https://nicosalvay.pythonanywhere.com/sitemap.xml

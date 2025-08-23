@@ -54,3 +54,6 @@ def venta (request):
     }
 
     return render (request, 'bienvenida/venta_productos.html',params)
+
+def robots_view(request):
+    return render(request, 'robots.txt', content_type='text/plain')
