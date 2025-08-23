@@ -1,4 +1,6 @@
 User-agent: *
 Disallow: /
+Allow: /$
+Allow: /tienda/venta_productos
 
 Sitemap: https://nicosalvay.pythonanywhere.com/sitemap.xml
